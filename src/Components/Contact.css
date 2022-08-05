@@ -1,0 +1,20 @@
+.colbox{
+    background-color: white;
+    box-shadow: 0.6px 0.6px 2rem rgba(229, 147, 252, 0.20);
+    border-radius: 10px;
+    
+}
+.colbox:hover i,span{
+    transform: scale(1.1);
+    color:#e99f27;
+}
+span{
+
+    transition-duration: .3s;
+    transition-property: transform;
+}
+i{
+    font-size: 27px;
+    transition-duration: .3s;
+    transition-property: transform,color;
+}

@@ -1,0 +1,23 @@
+.card img {
+  transition-property: transform;
+  transition-duration: 0.5s;
+  overflow: hidden;
+}
+.card {
+  overflow: hidden;
+  transition-property: box-shadow,background-color,border-radius;
+  transition-duration: 0.5s;
+}
+.card3{
+  box-shadow: 0.6px 0.6px 2rem rgba(35, 52, 53, 0.25);
+  background-color: white;
+  border-radius: 15px;  
+}
+.card1:hover,.card2:hover{
+  box-shadow: 0.6px 0.6px 2rem rgba(35, 52, 53, 0.25);
+  background-color: white;
+  border-radius: 15px;
+}
+.card img:hover {
+  transform: scale(1.1);
+}

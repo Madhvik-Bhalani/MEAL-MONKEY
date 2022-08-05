@@ -1,0 +1,68 @@
+.icons {
+    position: fixed;
+    top: 50%;
+    left: 0px;
+  
+    /* uoer rey te mate niche thi pan 5 */
+    transform: translateY(-50%);
+    z-index: 1;
+  }
+  .icons a {
+    display: flex;
+    width: 170px;
+    justify-content: flex-end;
+    align-items: center;
+    text-transform: capitalize;
+    box-sizing: border-box;
+    /* background-color: blue; */
+    color: white;
+    font-size: 20px;
+    padding: 2px;
+  
+    text-decoration: none;
+  
+    transform: translateX(-130px);
+    transition-property: all;
+    transition-timing-function: linear;
+    transition-duration: 0.6s;
+    border-radius: 2px;
+  }
+  .icons a:hover {
+    transform: translateX(0);
+  }
+  
+  .icons .fab {
+    font-size: 30px;
+    margin-left: 15px;
+    animation-name: icons;
+    animation-iteration-count: infinite;
+    animation-direction: alternate-reverse;
+  
+    animation-timing-function: linear;
+    animation-duration: 1.2s;
+    margin-bottom: 8px;
+    box-sizing: border-box;
+    margin-right: 5px;
+    margin-top: 4px;
+  }
+  
+  @keyframes icons {
+    from {
+      transform: scale(0.8);
+    }
+    to {
+      transform: scale(1.2);
+    }
+  }
+  .icons .fb {
+    background-color: #4267b2;
+  }
+  .icons .tele {
+    background-color: #0088cc;
+  }
+  .icons .insta {
+    background-color: rgb(245, 71, 71);
+  }
+  .icons .link {
+    background-color: blue;
+  }
