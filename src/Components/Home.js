@@ -18,8 +18,8 @@ function Home() {
             <Signup />
             <Speciality />
             {/* <Socialicon/> */}
-            
-             {localStorage.getItem("token")&& <Footer />}
+
+            <Footer />
         </>
     )
 }

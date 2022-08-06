@@ -1,0 +1,28 @@
+.footbox i{
+    font-size: 28px;
+    text-shadow: .5px .5px .5px black;
+
+}
+.footbox a{
+    border: none;
+    transition-property: transform,text-shadow;
+    transition-duration: .4s;
+    /* animation-name: icon;
+    animation-duration: 1.5s;
+    animation-timing-function: ease;
+    animation-iteration-count: infinite;
+    animation-direction: alternate; */
+}
+/* @keyframes icon {
+    from{
+transform: scale(.9);
+}to{
+    
+    transform: scale(1.2);
+    }
+} */
+
+.footbox a:hover i{
+    transform: scale(1.2);
+    text-shadow: .5px .5px .5px black;
+}
