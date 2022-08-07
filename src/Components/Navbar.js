@@ -5,6 +5,7 @@ import './Navbar.css'
 import { Link } from "react-router-dom";
 import reloadcontext from '../Context/Reloadcontext';
 import { useNavigate } from 'react-router-dom';
+import alertcontext from '../Context/Alertcontext';
 
 
 function Navbar() {
@@ -13,6 +14,7 @@ function Navbar() {
     // modal trigger reference
     const refcon = useContext(refcontext)
     const reloadcon = useContext(reloadcontext)
+    const alertcon=useContext(alertcontext)
     // eslint-disable-next-line
     let { reload, setreload } = reloadcon
     const { refin, refup ,refpass} = refcon
@@ -32,6 +34,7 @@ function Navbar() {
         setreload({})//for rerender nav
         localStorage.removeItem("token");
         navigate("/")
+        alertcon.disalert("logout","logged out successfully.!")
     }
 
     const changepassHandler=()=>{

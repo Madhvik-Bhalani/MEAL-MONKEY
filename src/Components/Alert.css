@@ -1,0 +1,15 @@
+.toastbox{
+    animation-name: toast;
+    animation-duration: .5s;
+    animation-iteration-count: 1;
+    animation-timing-function: ease;
+}
+@keyframes toast {
+    from{
+transform: scale(.5);
+}to{
+    
+    transform: scale(1);
+    }
+    
+}

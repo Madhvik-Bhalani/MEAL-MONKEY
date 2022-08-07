@@ -3,6 +3,8 @@ import Footer from './Footer'
 import './Contact.css'
 import dbcon from '../Context/Dbcon'
 import { useNavigate } from "react-router-dom";
+import alertcontext from '../Context/Alertcontext'
+
 
 function Contact() {
     const condb = useContext(dbcon)
@@ -11,6 +13,9 @@ function Contact() {
         getcontact()
         // eslint-disable-next-line
     }, [])
+
+    const alertcon=useContext(alertcontext)
+    let {disalert}=alertcon
 
     let navigate=useNavigate()
     const [data, setdata] = useState({name:"",email:"",mno:"",msg:""})
@@ -35,6 +40,8 @@ function Contact() {
             console.log("ok"+cdata.ok);
             setdata({ name: "", email: "", mno: "", msg: "" })
             navigate("/")
+            disalert("conatct","Your message has been sent successfully.!")
+
         }
 
     }

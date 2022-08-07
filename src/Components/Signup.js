@@ -3,6 +3,9 @@ import refcontext from '../Context/Refcontext'
 import logo from '../Assets/logo.png'
 import reloadcontext from '../Context/Reloadcontext'
 import dbcon from '../Context/Dbcon'
+import alertcontext from '../Context/Alertcontext'
+
+
 
 function Signup() {
     const refcon = useContext(refcontext)
@@ -10,6 +13,8 @@ function Signup() {
     const condb=useContext(dbcon)
     const refclose = useRef(null)
     const subref = useRef(null)
+    const alertcon=useContext(alertcontext)
+    let {disalert}=alertcon
     const [data, setdata] = useState({ name: "", email: "", pass: "", mno: "", cpass: "" })
     const subHandler = async (e) => {
         e.preventDefault();
@@ -31,6 +36,12 @@ function Signup() {
             localStorage.setItem("token", token)
             reloadcon.setreload({}) //to rerender nav and home cmp
             condb.getcontact() //to get userdata when signup
+            // disalert("sign up","Your Account successfully created.!")
+            
+        }
+        else{
+            refclose.current.click()
+            disalert("sign up",token)
         }
 
     }
