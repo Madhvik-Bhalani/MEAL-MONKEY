@@ -42,7 +42,7 @@ font-size: 19px;
 
 .sidebox{
     display: flex;
-    margin-right: 50px;
+    margin-right:40 px;
 }
 .sidebox li{
     list-style: none;

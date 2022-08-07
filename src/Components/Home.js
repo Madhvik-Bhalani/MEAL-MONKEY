@@ -1,5 +1,6 @@
 import React, { useContext } from 'react'
 import reloadcontext from '../Context/Reloadcontext'
+import Changepass from './Changepass'
 import Footer from './Footer'
 import Hero from './Hero'
 import Signin from './Signin'
@@ -18,7 +19,7 @@ function Home() {
             <Signup />
             <Speciality />
             {/* <Socialicon/> */}
-
+            <Changepass/>
             <Footer />
         </>
     )

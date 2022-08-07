@@ -25,7 +25,7 @@ function Footer() {
 
 
           </section>
-          <h5 className='text-dark text-capitalize' > <span style={{ color: "black" }}>  designed and developed by</span> <span > <a style={{ color: "#540640", textShadow: ".5px .5px .5px black" }}  role="button" rel="noreferrer" href="https://github.com/" target={"_blank"}> &lt;&#x2f;Madhvik Bhalani&gt; </a></span></h5>
+          <h5 className='text-dark text-capitalize' > <span style={{ color: "black" }}>  designed and developed by</span> <span className='namebox'> <a style={{ color: "#540640", textShadow: ".5px .5px .5px black",textDecoration:"none" }}  role="button" rel="noreferrer" href="https://github.com/" target={"_blank"}> &lt;&#x2f;Madhvik Bhalani&gt; </a></span></h5>
 
         </div>
 

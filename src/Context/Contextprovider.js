@@ -7,6 +7,11 @@ import dbcon from './Dbcon.js'
 function Contextprovider(props) {
   const refin = useRef(null)
   const refup = useRef(null)
+  const refpass = useRef(null)
+  const refclosepass = useRef(null)
+  const refopass = useRef(null)
+  const refnpass = useRef(null)
+  const refrpass = useRef(null)
   const [reload, setreload] = useState({})
   const [condata, setcondata] = useState({})
 
@@ -24,18 +29,42 @@ function Contextprovider(props) {
       if (res.status === 200) {
         console.log("run stTE");
         setcondata(jsondata)
-        localStorage.setItem("name",jsondata.name.toString())
+        localStorage.setItem("name", jsondata.name.toString())
       }
     } catch (e) {
       console.log("getcontact data err" + e);
     }
   }
 
+  // 2.change password
+  const changepass = async(opass,npass,rpass) => {
+
+    const res = await fetch("http://localhost:5000/auth/changepass", {
+      credentials: "include",
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json",
+        "auth-token":localStorage.getItem("token")
+      },
+      body: JSON.stringify({ opass, npass,rpass })
+    })
+    const msg = await res.json()
+    if (res.status === 200) {
+      refclosepass.current.click();
+      console.log(msg);
+      refopass.current.value="";
+      refnpass.current.value="";
+      refrpass.current.value="";
+    }
+  }
+
+
   return (
     <>
-      <refcontext.Provider value={{ refin, refup }}>
+      <refcontext.Provider value={{ refin, refup, refpass,refclosepass,refopass,refnpass,refrpass }}>
         <reloadcontext.Provider value={{ reload, setreload }}>
-          <dbcon.Provider value={{ getcontact, condata }}>
+          <dbcon.Provider value={{ getcontact, condata,changepass }}>
             {props.children}
           </dbcon.Provider>
         </reloadcontext.Provider>

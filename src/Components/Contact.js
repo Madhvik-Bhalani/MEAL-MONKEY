@@ -42,7 +42,7 @@ function Contact() {
 
     return (
         <>
-            <div className="container-fluid  mt-1 mb-5" style={{ height: "680px", backgroundColor: "rgb(250 255 255)",padding:"35px 15px" }}>
+            <div className="container-fluid  mt-1 mb-4" style={{ height: "680px", backgroundColor: "rgb(250 255 255)",padding:"35px 15px" }}>
 
                 <h2 className='text-center' style={{ color: "#540640",textShadow:".3px .3px .3px #e99f27" }}>Get In Touch</h2> <div className="container px-4 mt-4 text-center">
                     <div className="row gx-5" >

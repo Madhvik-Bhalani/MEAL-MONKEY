@@ -15,7 +15,7 @@ function Navbar() {
     const reloadcon = useContext(reloadcontext)
     // eslint-disable-next-line
     let { reload, setreload } = reloadcon
-    const { refin, refup } = refcon
+    const { refin, refup ,refpass} = refcon
     const signinHandler = (e) => {
         e.preventDefault();
         refin.current.click();
@@ -34,6 +34,10 @@ function Navbar() {
         navigate("/")
     }
 
+    const changepassHandler=()=>{
+        refpass.current.click()
+    }
+
   
    
     
@@ -42,7 +46,7 @@ function Navbar() {
 
     return (
         <>
-            <nav className="navbar navbar-expand-lg " style={{ height: "90px", backgroundColor: "rgb(250 255 255)" }}>
+            <nav className="navbar navbar-expand-lg bg-light" style={{ height: "90px"}}>
                 <div className="container-fluid">
                     <img src={logo} className="logoimg" alt="Meal Monkey.." />
                     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -75,7 +79,7 @@ function Navbar() {
                                         <i className="fa-solid fa-user"></i> {localStorage.getItem("name")}..
                                     </Link>
                                     <ul className="dropdown-menu">
-                                        <li><Link
+                                        <li onClick={changepassHandler}><Link
                                             className="dropdown-item" to=""><i className="fa-solid fa-unlock"></i> Change Password</Link></li>
                                         <li className='logout' onClick={logoutHandler}> <Link to="" className='dropdown-item'><i className="fa-solid fa-right-from-bracket"></i> Logout</Link></li>
 
