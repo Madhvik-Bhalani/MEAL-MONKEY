@@ -1,0 +1,16 @@
+.cardp img {
+  height: 220px;
+  overflow: hidden;
+  transition-property: transfrom;
+  transition-duration: 0.4s;
+}
+.cardp:hover img {
+  transform: scale(1.1);
+}
+.imgbox {
+  overflow: hidden;
+}
+.cardp {
+  border: none;
+  box-shadow: 0.6px 0.6px 2rem rgba(84, 6, 64, 0.15);
+}

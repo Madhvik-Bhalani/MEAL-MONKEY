@@ -34,6 +34,7 @@ font-size: 19px;
     margin:0 5px 5px 0;
     color:#540640;
 }
+
 .fa-bars:hover{
     
     color:#e99f27;
@@ -42,12 +43,12 @@ font-size: 19px;
 
 .sidebox{
     display: flex;
-    margin-right:40 px;
+    margin-right:32px;
 }
 .sidebox li{
     list-style: none;
     font-size: 25px;
-    margin: 0px 15px;
+    margin: 0px 12px;
     padding: 3px;
     color: #540640;
     transition-property: color;
@@ -56,7 +57,7 @@ font-size: 19px;
 .sidebox li:hover,.sidebox .links:hover {
     color: #e99f27;
 }
-.sidebox li:hover i,.sidebox .links:hover i{
+.sidebox li:hover .nicons,.sidebox .links:hover i{
     transform: translateX(3px);
 }
 .sidebox .links{
@@ -76,3 +77,8 @@ font-size: 19px;
     cursor: pointer;
 }
 
+
+.sidebox .cart i{
+    transition: none!important;
+    
+}

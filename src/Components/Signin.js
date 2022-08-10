@@ -1,9 +1,9 @@
 import React, { useContext, useRef, useState } from 'react'
 import refcontext from '../Context/Refcontext'
 import logo from '../Assets/logo.png'
-import reloadcontext from '../Context/Reloadcontext'
 import dbcon from '../Context/Dbcon'
-import alertcontext from '../Context/Alertcontext'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 
@@ -12,10 +12,7 @@ function Signin() {
 
     // context for ref modal trigger btn -- triggerd from nav
     const refcon = useContext(refcontext)
-    const reloadcon=useContext(reloadcontext)
     const condb=useContext(dbcon)
-    const alertcon=useContext(alertcontext)
-    let {disalert}=alertcon
     
     const refclose = useRef(null)
     const subref = useRef(null)
@@ -38,16 +35,27 @@ function Signin() {
             localStorage.setItem("token", token)
             setData({ email: "", pass: "" })
             refclose.current.click()
-            reloadcon.setreload({}); //just for nav&home rerender after signin
             condb.getcontact() //to get userdata when signup
-            // disalert("sign in","signed in successfully.!")
         }
         else{
-            refclose.current.click()
-            disalert("sign in",token)
-            setTimeout(() => {
-                // refcon.refin.current.click()
-            }, 4000);
+            // refclose.current.click()
+            
+                toast.warn(`${token}`, {
+                    position: "top-right",
+                    autoClose: 2300,
+                    hideProgressBar: true,
+                    closeOnClick: false,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    progressClassName:'bar',
+                    style:{
+                        textTransform:"capitalize"
+                      }
+    
+    
+                    });
+           
             
         }
     }
@@ -101,6 +109,7 @@ function Signin() {
                     </div>
                 </div>
             </div>
+            <ToastContainer/>
         </>
     )
 }

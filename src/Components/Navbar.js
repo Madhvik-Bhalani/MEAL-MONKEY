@@ -3,21 +3,20 @@ import logo from '../Assets/logo.png'
 import refcontext from '../Context/Refcontext'
 import './Navbar.css'
 import { Link } from "react-router-dom";
-import reloadcontext from '../Context/Reloadcontext';
 import { useNavigate } from 'react-router-dom';
-import alertcontext from '../Context/Alertcontext';
+import reloadcontext from '../Context/Reloadcontext';
+
 
 
 function Navbar() {
 
 
+    const reloadcon = useContext(reloadcontext)
+    let { setreload } = reloadcon
     // modal trigger reference
     const refcon = useContext(refcontext)
-    const reloadcon = useContext(reloadcontext)
-    const alertcon=useContext(alertcontext)
     // eslint-disable-next-line
-    let { reload, setreload } = reloadcon
-    const { refin, refup ,refpass} = refcon
+    const { refin, refup, refpass } = refcon
     const signinHandler = (e) => {
         e.preventDefault();
         refin.current.click();
@@ -31,25 +30,20 @@ function Navbar() {
 
     let navigate = useNavigate()
     const logoutHandler = () => {
-        setreload({})//for rerender nav
         localStorage.removeItem("token");
         navigate("/")
-        alertcon.disalert("logout","logged out successfully.!")
+        setreload({})
+        
     }
 
-    const changepassHandler=()=>{
+    const changepassHandler = () => {
+        console.log(refpass.current);
         refpass.current.click()
     }
 
-  
-   
-    
-   
-    
-
     return (
         <>
-            <nav className="navbar navbar-expand-lg bg-light" style={{ height: "90px"}}>
+            <nav className="navbar navbar-expand-lg bg-light" style={{ height: "90px" }}>
                 <div className="container-fluid">
                     <img src={logo} className="logoimg" alt="Meal Monkey.." />
                     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -70,26 +64,35 @@ function Navbar() {
 
                             </div>
                             : <div className='sidebox'>
-                                <li><i className="fa-solid fa-house-chimney"></i> <Link to="/" className='links'>Home</Link></li>
+                                <li><i className="fa-solid fa-house-chimney nicons"></i> <Link to="/" className='links'>Home</Link></li>
 
 
 
-                                <li><i className="fa-solid fa-address-card"></i> <Link to="/contact" className='links'>Contact Us</Link></li>
+                                <li><i className="fa-solid fa-address-card nicons"></i> <Link to="/contact" className='links'>Contact Us</Link></li>
 
 
                                 <li className="nav-item dropdown">
                                     <Link className="nav-link dropdown-toggle" to="" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                        <i className="fa-solid fa-user"></i> {localStorage.getItem("name")}..
+                                        <i className="fa-solid fa-user nicons"></i> {localStorage.getItem("name")}..
                                     </Link>
-                                    <ul className="dropdown-menu">
+                                    <ul className="dropdown-menu" style={{ width: "280px" }}>
                                         <li onClick={changepassHandler}><Link
-                                            className="dropdown-item" to=""><i className="fa-solid fa-unlock"></i> Change Password</Link></li>
-                                        <li className='logout' onClick={logoutHandler}> <Link to="" className='dropdown-item'><i className="fa-solid fa-right-from-bracket"></i> Logout</Link></li>
+                                            className="dropdown-item p-1" to="#" style={{ fontSize: "25px" }}><i className="fa-solid fa-unlock" style={{ fontSize: "25px" }}></i> Change Password</Link></li>
+                                        <li className='logout' onClick={logoutHandler}> <Link to="#" style={{ fontSize: "25px" }}
+                                            className='dropdown-item p-1'><i className="fa-solid fa-right-from-bracket" style={{ fontSize: "25px" }}></i> Logout</Link></li>
 
                                     </ul>
                                 </li>
 
-                                <li className='cart'><i className="fa-solid fa-cart-arrow-down"></i> Cart</li></div>
+                                <span className="d-flex justify-content-center align-items-center position-absolute translate-middle  border border-light text-light text-center" style={{ top: "29px", right: "45px", borderRadius: "50%", height: "19px", width: "19px", zIndex: "1", backgroundColor: "#e99f27" }}> <span className='text-light' style={{ fontSize: "12px" }}>{localStorage.getItem("count")}</span>
+                                </span>
+                                <li className='cart'>
+                                    <Link to="/cart">
+                                        <i className="fa-solid fa-cart-arrow-down" style={{ transition: "none", transitionProperty: "none" }}>
+
+                                        </i>
+                                    </Link></li>
+                            </div>
                         }
                     </div>
                 </div>

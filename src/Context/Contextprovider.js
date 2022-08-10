@@ -1,8 +1,9 @@
 import React, { useRef, useState } from 'react'
 import refcontext from './Refcontext'
 import reloadcontext from './Reloadcontext'
-import alertcontext from './Alertcontext'
 import dbcon from './Dbcon.js'
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 function Contextprovider(props) {
@@ -15,7 +16,23 @@ function Contextprovider(props) {
   const refrpass = useRef(null)
   const [reload, setreload] = useState({})
   const [condata, setcondata] = useState({})
+  const [pdata, setpdata] = useState([])
+  const [cdata, setcdata] = useState([])
+  // const [count, setcount] = useState(0)
+  let count = 0;
+  if (count === 0) {
+    if (localStorage.getItem("count")) {
 
+      let newcount = parseInt(localStorage.getItem("count"))
+      localStorage.setItem("count", newcount)
+    }
+    else {
+      localStorage.setItem("count", count)
+
+    }
+
+
+  }
 
   // 1.get use details for contact page
   const getcontact = async () => {
@@ -29,7 +46,6 @@ function Contextprovider(props) {
       })
       const jsondata = await res.json()
       if (res.status === 200) {
-        console.log("run stTE");
         setcondata(jsondata)
         localStorage.setItem("name", jsondata.name.toString())
       }
@@ -53,42 +69,225 @@ function Contextprovider(props) {
     })
     const msg = await res.json()
     if (res.status === 200) {
+      toast.success(`your passord has been changed`, {
+        position: "top-right",
+        autoClose: 2300,
+        hideProgressBar: true,
+        closeOnClick: false,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        style: {
+          textTransform: "capitalize"
+        }
+      })
       refclosepass.current.click();
       console.log(msg);
       refopass.current.value = "";
       refnpass.current.value = "";
       refrpass.current.value = "";
-      disalert("change password","your password has been changed.!")
     }
-    else{
-      disalert("change password",msg)
+    else {
+      toast.warn(`${msg}`, {
+        position: "top-right",
+        autoClose: 2300,
+        hideProgressBar: true,
+        closeOnClick: false,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        style: {
+          textTransform: "capitalize"
+        }
+      })
+    }
+  }
+
+  // get products
+  const getproducts = async () => {
+    try {
+      const res = await fetch("http://localhost:5000/food/getproducts", {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        }
+      })
+      const jsondata = await res.json()
+      if (res.status === 200) {
+        setpdata(jsondata)
+      }
+    } catch (e) {
+      console.log("getcontact data err" + e);
+    }
+  }
+
+  // add to cart
+  const addtocart = async (id) => {
+    try {
+      const res = await fetch("http://localhost:5000/cart/add", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "auth-token": localStorage.getItem("token")
+        },
+        body: JSON.stringify({ id })
+
+      })
+      await res.json()
+      if (res.status === 201) {
 
 
+        toast.success(`added to cart`, {
+          position: "top-right",
+          autoClose: 500,
+          hideProgressBar: true,
+          closeOnClick: false,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          style: {
+            textTransform: "capitalize"
+          }
+
+        })
+
+      }
+    } catch (e) {
+      console.log("add to cart err" + e);
     }
   }
 
 
-  // alert 
-  const [alert, setalert] = useState(false )
-  const disalert = (page, msg) => {
-    setalert({
-      page: page,
-      msg: msg
-    })
+  // get products
+  const getcartproducts = async () => {
+    try {
+      const res = await fetch("http://localhost:5000/cart/getcartproducts", {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          "auth-token": localStorage.getItem("token")
+        }
+      })
+      const jsondata = await res.json()
+      if (res.status === 200) {
+        setcdata(jsondata)
+        // console.log(jsondata);
 
-    setTimeout(() => {
-      setalert(false)
-    }, 4000);
 
+      }
+    } catch (e) {
+      console.log("get cart product err" + e);
+    }
   }
+
+  // delete product from cart
+  const deleteproduct = async (id) => {
+    try {
+      const res = await fetch("http://localhost:5000/cart/deleteproduct", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "auth-token": localStorage.getItem("token")
+        },
+        body: JSON.stringify({ id })
+      })
+
+      await res.json()
+      if (res.status === 200) {
+        // setcdata(jsondata)
+        const newdata = cdata.filter((elem) => {
+          return elem._id !== id
+        })
+        setcdata(newdata)
+
+      }
+    } catch (e) {
+      console.log("delete product err" + e);
+    }
+  }
+  // plus item
+  const plusitem = async(id) => {
+    try {
+
+      const res = await fetch("http://localhost:5000/cart/plus", {
+        headers: {
+          "auth-token": localStorage.getItem("token"),
+          "Content-Type": "application/json"
+
+        },
+        method: "POST",
+        body: JSON.stringify({ id })
+
+      })
+      let data = await res.json()
+      if (res.status === 200) {
+        console.log(data);
+        let data2 = parseInt(localStorage.getItem("count"))
+        localStorage.setItem("count", data2 + 1)
+        setreload({})
+
+       let newobj=JSON.parse(JSON.stringify(cdata))
+        for (let index = 0; index < newobj.length; index++) {
+          const elem = newobj[index];
+          if(elem._id===id){
+            newobj[index].quantity=data.quantity
+            newobj[index].price=data.price
+
+            break;
+          }
+        }
+        setcdata(newobj)
+      }
+    }
+    catch (error) {
+      console.log("plus item"+error);
+    }
+  }
+  // minus item
+  const minusitem = async(id) => {
+    try {
+
+      const res = await fetch("http://localhost:5000/cart/minus", {
+        headers: {
+          "auth-token": localStorage.getItem("token"),
+          "Content-Type": "application/json"
+
+        },
+        method: "POST",
+        body: JSON.stringify({ id })
+
+      })
+      let data = await res.json()
+      if (res.status === 200) {
+        console.log(data);
+        let data2 = parseInt(localStorage.getItem("count"))
+        localStorage.setItem("count", data2 - 1)
+        setreload({})
+        let newobj=JSON.parse(JSON.stringify(cdata))
+        for (let index = 0; index < newobj.length; index++) {
+          const elem = newobj[index];
+          if(elem._id===id){
+            newobj[index].quantity=data.quantity
+            newobj[index].price=data.price
+
+            break;
+          }
+        }
+        setcdata(newobj)
+      }
+    }
+    catch (error) {
+      console.log("minus item"+error);
+    }
+  }
+  // localStorage.setItem("count",count)
   return (
     <>
       <refcontext.Provider value={{ refin, refup, refpass, refclosepass, refopass, refnpass, refrpass }}>
         <reloadcontext.Provider value={{ reload, setreload }}>
-          <dbcon.Provider value={{ getcontact, condata, changepass }}>
-            <alertcontext.Provider value={{ alert, disalert }}>
-              {props.children}
-            </alertcontext.Provider>
+          <dbcon.Provider value={{ getcontact, condata, changepass, getproducts, pdata, addtocart, getcartproducts, cdata, deleteproduct, count, plusitem, minusitem }}>
+
+            {props.children}
           </dbcon.Provider>
         </reloadcontext.Provider>
       </refcontext.Provider>

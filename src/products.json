@@ -1,0 +1,164 @@
+[
+  {
+    "name": "Margherita Pizza",
+    "veg": true,
+    "price": 449,
+    "description": "Soft crust with lots of Cheese",
+    "seller": "La Casa Gelato",
+    "quantity": 1,
+    "img": "https://cdn.pixabay.com/photo/2018/06/30/19/47/pizza-3508244_960_720.jpg"
+  },
+  {
+    "name": "Italian Pizza",
+    "veg": true,
+    "price": 529,
+    "description": "Onion, Green Capsicum & Red Paprika in Italian Sauce",
+    "seller": "La Casa Gelato",
+    "quantity": 1,
+    "img": "https://cdn.pixabay.com/photo/2017/12/09/08/18/pizza-3007395_960_720.jpg"
+  },
+  {
+    "name": "Mexican Pizza",
+    "veg": true,
+    "price": 569,
+    "description": "Black Olives, Red Capsicum, Mushroom, Red Paprika & Cheese",
+    "seller": "La Pino'Z",
+    "quantity": 1,
+    "img": "https://cdn.pixabay.com/photo/2017/01/03/11/33/pizza-1949183_960_720.jpg"
+  },
+  {
+    "name": "Supreme Veg Burger",
+    "veg": true,
+    "price": 129,
+    "description": "Our best-selling burger withcrispy veg patty, fresh onion and our signature sauce",
+    "seller": "Burger King",
+    "quantity": 1,
+    "img": "https://cdn.pixabay.com/photo/2019/11/09/17/02/burger-4614022_960_720.jpg"
+  },
+  {
+    "name": "Crispy Chicken Burger",
+    "veg": false,
+    "price": 159,
+    "description": "Our best-selling burger with crispy chicken patty, onion and classic mayo sauce",
+    "seller": "Burger King",
+    "quantity": 1,
+    "img": "https://cdn.pixabay.com/photo/2020/10/05/19/55/hamburger-5630646_960_720.jpg"
+  },
+  {
+    "name": "Idli Sambar",
+    "veg": true,
+    "price": 140,
+    "description": "Spongy 2 pcs of idlis steamed to perfection served with delicious hot sambhar and coconut chutney",
+    "seller": "Simply Madras",
+    "quantity": 1,
+    "img": "https://cdn.pixabay.com/photo/2017/06/16/11/38/breakfast-2408818_960_720.jpg"
+  },
+  {
+    "name": "Nylon Dosa",
+    "veg": true,
+    "price": 150,
+    "description": "A thin crispy plain dosa served with sambhar, red garlic chutney & white coconut chutney",
+    "seller": "Simply Madras",
+    "quantity": 1,
+    "img": "https://cdn.pixabay.com/photo/2016/10/25/13/42/indian-1768906_960_720.jpg"
+  },
+  {
+    "name": "Chicken Biryani",
+    "veg": false,
+    "price": 139,
+    "description": "Medium sized spiced chiken pices cooked with basmati rice and special tangy masala",
+    "seller": "Shalimar Biryani",
+    "quantity": 1,
+    "img": "https://cdn.pixabay.com/photo/2022/02/12/15/05/biryani-7009127_960_720.jpg"
+  },
+  {
+    "name": "Mix Veg",
+    "veg": true,
+    "price": 190,
+    "description": "Assorted vegetables cooked in a traditional Indian onion-tomato gravy and ground spices",
+    "seller": "Makhni Brothers",
+    "quantity": 1,
+    "img": "https://cdn.pixabay.com/photo/2018/12/04/16/49/indian-food-3856050_960_720.jpg"
+  },
+  {
+    "name": "Kachori Chaat",
+    "veg": true,
+    "price": 135,
+    "description": "1 pcs kachori with curd, green cutney and spices",
+    "seller": "Dilhi Chat Corner",
+    "quantity": 1,
+    "img": "https://cdn.pixabay.com/photo/2014/12/22/12/20/food-577222__340.jpg"
+  },
+  {
+    "name": "Samosa",
+    "veg": true,
+    "price": 45,
+    "description": "Fry dal samosa with green chutney and chilly",
+    "seller": "Dilhi Chat Corner",
+    "quantity": 1,
+    "img": "https://cdn.pixabay.com/photo/2016/06/26/22/46/india-1481500_960_720.jpg"
+  },
+  {
+    "name": "Pink Sauce Pasta",
+    "veg": true,
+    "price": 239,
+    "description": "A dreamy combination of white and red sauce tossed with exotic vegetables",
+    "seller": "Oven & Grill",
+    "quantity": 1,
+    "img": "https://cdn.pixabay.com/photo/2017/11/06/10/00/pasta-2923198_960_720.jpg"
+  },
+  {
+    "name": "Hakka Noodles",
+    "veg": true,
+    "price": 220,
+    "description": "Fried vegetables and noodles tossed with a homemade schezwan sauce",
+    "seller": "Oven & Grill",
+    "quantity": 1,
+    "img": "https://cdn.pixabay.com/photo/2015/04/06/16/21/korean-food-709606_960_720.jpg"
+  },
+  {
+    "name": "Pani Puri",
+    "veg": true,
+    "price": 35,
+    "description": "Boondi, Sprouts, Potato, Khajur Pani, Teekha Pani",
+    "seller": "Dilhi Chat Corner",
+    "quantity": 1,
+    "img": "https://cdn.pixabay.com/photo/2022/03/23/15/40/panipuri-7087439_960_720.jpg"
+  },
+  {
+    "name": "Italian Pasta",
+    "veg": true,
+    "price": 199,
+    "description": "Penne pasta cooked in creamy and cheesy white sauce, tossed in vegetables",
+    "seller": "Oven & Grill",
+    "quantity": 1,
+    "img": "https://cdn.pixabay.com/photo/2016/03/17/22/56/pasta-1264056_960_720.jpg"
+  },
+  {
+    "name": "Steamed Momos",
+    "veg": true,
+    "price": 129,
+    "description": "Steamed Momos served with red garlic chutney",
+    "seller": "Uncle's Momos",
+    "quantity": 1,
+    "img": "https://cdn.pixabay.com/photo/2020/09/21/12/41/dumplings-5589936_960_720.jpg"
+  },
+  {
+    "name": "Veg. Cheese Sandwich",
+    "veg": true,
+    "price": 99,
+    "description": "Non Grilled Cheese Sandwich",
+    "seller": "Raj Fast Food",
+    "quantity": 1,
+    "img": "https://cdn.pixabay.com/photo/2017/05/31/02/56/food-photography-2358904_960_720.jpg"
+  },
+  {
+    "name": "Veg Cheese Grill Sandwich",
+    "veg": true,
+    "price": 199,
+    "description": "Veg cheese grill sandwich with tomato ketchup",
+    "seller": "Raj Fast Food",
+    "quantity": 1,
+    "img": "https://cdn.pixabay.com/photo/2016/10/25/07/15/sandwich-1768019_960_720.jpg"
+  }
+]

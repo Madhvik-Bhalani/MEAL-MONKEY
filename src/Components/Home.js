@@ -1,28 +1,26 @@
 import React, { useContext } from 'react'
 import reloadcontext from '../Context/Reloadcontext'
-import Alert from './Alert'
-import Changepass from './Changepass'
-import Footer from './Footer'
 import Hero from './Hero'
+import Products from './Products'
 import Signin from './Signin'
 import Signup from './Signup'
 // import Socialicon from './Socialicon'
 import Speciality from './Speciality'
 
 function Home() {
-    const reloadcon = useContext(reloadcontext)
-    // eslint-disable-next-line
-    let { reload } = reloadcon
+    const reloadcon=useContext(reloadcontext)
+    // eslint-disable-next-line 
+    let {reload}=reloadcon
     return (
         <>
-            <Hero />
+            {!localStorage.getItem("token")&&<Hero />}
             <Signin />
             <Signup />
-            <Alert/>
-            <Speciality />
+            {!localStorage.getItem("token")&&<Speciality />}
+            {localStorage.getItem("token")&& <Products/> }
+            
             {/* <Socialicon/> */}
-            <Changepass />
-            <Footer />
+            
         </>
     )
 }
