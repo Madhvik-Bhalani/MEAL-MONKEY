@@ -12,6 +12,7 @@ import './Signup.css'
 function Signup() {
     const refcon = useContext(refcontext)
     const condb = useContext(dbcon)
+    let { getqty } = condb
     const refclose = useRef(null)
     const subref = useRef(null)
     const [data, setdata] = useState({ name: "", email: "", pass: "", mno: "", cpass: "" })
@@ -33,7 +34,8 @@ function Signup() {
             setdata({ name: "", email: "", pass: "", mno: "", cpass: "" })
             refclose.current.click()
             localStorage.setItem("token", token)
-            condb.getcontact() //to get userdata when signup
+            condb.getcontact() //to get userdata when signup for name
+            getqty()
 
         }
         else {
@@ -45,17 +47,9 @@ function Signup() {
                 pauseOnHover: true,
                 draggable: true,
                 progress: undefined,
-                style:{
-                    textTransform:"capitalize"
-                  }
-
-
-
-
-
-
-
-
+                style: {
+                    textTransform: "capitalize"
+                }
             })
         }
 
@@ -69,7 +63,7 @@ function Signup() {
         subref.current.click(); //trigger submit button
     }
 
-    
+
     return (
         <>
             <button type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop2" style={{ display: "none" }} ref={refcon.refup}>

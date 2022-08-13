@@ -5,6 +5,7 @@ import './Navbar.css'
 import { Link } from "react-router-dom";
 import { useNavigate } from 'react-router-dom';
 import reloadcontext from '../Context/Reloadcontext';
+import dbcon from '../Context/Dbcon';
 
 
 
@@ -28,12 +29,17 @@ function Navbar() {
 
     }
 
+    const condb = useContext(dbcon)
+    let { putqty } = condb
     let navigate = useNavigate()
     const logoutHandler = () => {
+        let qty = parseInt(localStorage.getItem("count"))
+        putqty(qty)
         localStorage.removeItem("token");
         navigate("/")
         setreload({})
-        
+        localStorage.setItem("count", 0)
+
     }
 
     const changepassHandler = () => {
@@ -75,16 +81,18 @@ function Navbar() {
                                     <Link className="nav-link dropdown-toggle" to="" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                         <i className="fa-solid fa-user nicons"></i> {localStorage.getItem("name")}..
                                     </Link>
-                                    <ul className="dropdown-menu" style={{ width: "280px" }}>
-                                        <li onClick={changepassHandler}><Link
-                                            className="dropdown-item p-1" to="#" style={{ fontSize: "25px" }}><i className="fa-solid fa-unlock" style={{ fontSize: "25px" }}></i> Change Password</Link></li>
-                                        <li className='logout' onClick={logoutHandler}> <Link to="#" style={{ fontSize: "25px" }}
-                                            className='dropdown-item p-1'><i className="fa-solid fa-right-from-bracket" style={{ fontSize: "25px" }}></i> Logout</Link></li>
+                                    <ul className="dropdown-menu" style={{ width: "257px" }}>
+                                        <li onClick={changepassHandler} ><Link
+                                            className="dropdown-item p-1" to="#" style={{ fontSize: "23px" }}><i className="fa-solid fa-unlock" style={{ fontSize: "23px" }}></i> Change Password</Link></li>
+                                        <li className='logout' onClick={logoutHandler}> <Link to="#" style={{ fontSize: "23px" }}
+                                            className='dropdown-item p-1'><i className="fa-solid fa-right-from-bracket" style={{ fontSize: "23px" }}></i> Logout</Link></li>
+                                        <li> <Link to="/yourorder" style={{ fontSize: "23px" }}
+                                            className='dropdown-item p-1'><i className="fa-solid fa-basket-shopping" style={{fontSize:"23px"}}></i> Your Order</Link></li>
 
                                     </ul>
                                 </li>
 
-                                <span className="d-flex justify-content-center align-items-center position-absolute translate-middle  border border-light text-light text-center" style={{ top: "29px", right: "45px", borderRadius: "50%", height: "19px", width: "19px", zIndex: "1", backgroundColor: "#e99f27" }}> <span className='text-light' style={{ fontSize: "12px" }}>{localStorage.getItem("count")}</span>
+                                <span className="d-flex justify-content-center align-items-center position-absolute translate-middle  border border-light text-light text-center" style={{ top: "30px", right: "64px", borderRadius: "50%", height: "19px", width: "19px", zIndex: "1", backgroundColor: "#e99f27" }}> <span className='text-light' style={{ fontSize: "12px" }}>{localStorage.getItem("count")}</span>
                                 </span>
                                 <li className='cart'>
                                     <Link to="/cart">

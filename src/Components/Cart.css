@@ -8,6 +8,11 @@
   box-shadow: 0.6px 0.6px 2rem rgba(35, 52, 53, 0.1);
   height: 400px;
   border-radius: 15px;
+  background-color: white;
+  
+}
+.cartcontainer{
+  /* background: linear-gradient(to top left, rgb(248, 243, 252), rgb(242, 239, 250)) */
 }
 hr {
   background-color: black;
@@ -87,10 +92,22 @@ hr {
 
 
 .errimg{
-  height: 500px;
+  height: 520px;
   display: flex;
   justify-content: center;
 }
 .errimg img{
   height: 500px;
+}
+
+.bottomicons1,.bottomicons2{
+  transition-property: transform,color;
+  transition-duration: .4s;
+}
+
+.btncheckout:hover .bottomicons1{
+transform: scale(1.2);
+}
+.btndeleteall:hover .bottomicons2{
+transform: scale(1.2);
 }

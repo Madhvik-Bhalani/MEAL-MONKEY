@@ -3,21 +3,19 @@ import dbcon from '../Context/Dbcon'
 
 function Citem(props) {
     const condb = useContext(dbcon)
-    let { deleteproduct,plusitem,minusitem} = condb
-    
-    const deleteHandler = () => {
-        deleteproduct(props.product._id)
-        let data=parseInt(localStorage.getItem("count"))
-        localStorage.setItem("count",data-1)
+    let { plusitem, minusitem } = condb
 
-    }
-    const plusHandler=()=>{
+    // const deleteHandler = () => {
+    //     deleteproduct(props.product._id)
+    //     let data=parseInt(localStorage.getItem("count"))
+    //     localStorage.setItem("count",data-1)
+
+    // }
+    const plusHandler = () => {
         plusitem(props.product._id)
-        console.log("plu");
     }
-    const minusHandler=()=>{
+    const minusHandler = () => {
         minusitem(props.product._id)
-        console.log("min");
     }
     return (
         <>
@@ -33,19 +31,19 @@ function Citem(props) {
                     <p style={{ width: "400px" }}>{props.desc}</p>
                 </div>
                 <div className="add-minus">
-                    <button onClick={minusHandler} disabled={props.qty===1}> <i className="fa-solid fa-circle-minus" style={{ fontSize: "25px" }} ></i></button>
-                    <input type="text" placeholder={props.qty} disabled />
+                    <button onClick={minusHandler} > <i className="fa-solid fa-circle-minus" style={{ fontSize: "25px" }} ></i></button>
+                    <input type="text" placeholder={props.qty} />
                     <button onClick={plusHandler}><i className="fa-solid fa-circle-plus" style={{ fontSize: "25px" }} ></i></button>
                 </div>
                 <div className="price">
                     <p>&#8377;{props.price}</p>
 
                 </div>
-                <div className="remove-item">
+                {/* <div className="remove-item">
                     <i
                         className="fas fa-trash-alt remove"
                         style={{ fontSize: "25px" }} onClick={deleteHandler}></i>
-                </div>
+                </div> */}
             </div>
             <hr />
         </>

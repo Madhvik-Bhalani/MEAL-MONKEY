@@ -14,7 +14,7 @@ function Item(props) {
         addtocart(props.product._id);
         let data = parseInt(localStorage.getItem("count"))
         localStorage.setItem("count", data + 1)
-        setreload({})
+        setreload({}) //for nav re-render
 
 
 

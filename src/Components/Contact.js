@@ -60,8 +60,7 @@ function Contact() {
 
     return (
         <>
-            {/* <Changepass/> */}
-            <div className="container-fluid  mt-3 mb-5 p-3" style={{ height: "690px", padding: "35px 15px" }}>
+            <div className="container-fluid contactbox  p-3" style={{ height: "730px", padding: "35px 15px", }}>
 
                 <h2 className='text-center' style={{ color: "#540640",textShadow:".5px .5px .5px #e99f27" }}>Get In Touch</h2>
                 <h5 className='text-center' style={{marginTop:"-5px"}}><span style={{fontSize:"30px",color:"#540640"}}>————</span> <span style={{color:"#e99f27",fontSize:"25px"}}>X</span> <span style={{fontSize:"30px",color:"#540640"}}>————</span></h5>

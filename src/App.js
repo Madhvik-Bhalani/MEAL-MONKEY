@@ -11,6 +11,7 @@ import Contact from './Components/Contact';
 import Changepass from './Components/Changepass';
 import Cart from './Components/Cart';
 import Footer from './Components/Footer';
+import Yourorder from './Components/Yourorder';
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/contact" element={<Contact/>} />
           <Route path="/cart" element={<Cart/>} />
+          <Route path="/yourorder" element={<Yourorder/>} />
         </Routes>
         <Footer/>
       </BrowserRouter>

@@ -14,10 +14,14 @@ function Contextprovider(props) {
   const refopass = useRef(null)
   const refnpass = useRef(null)
   const refrpass = useRef(null)
+  const refloc = useRef(null)
+  const reflocclose = useRef(null)
+  const reflocsub = useRef(null)
   const [reload, setreload] = useState({})
   const [condata, setcondata] = useState({})
   const [pdata, setpdata] = useState([])
   const [cdata, setcdata] = useState([])
+  const [odata, setodata] = useState([])
   // const [count, setcount] = useState(0)
   let count = 0;
   if (count === 0) {
@@ -139,7 +143,7 @@ function Contextprovider(props) {
 
         toast.success(`added to cart`, {
           position: "top-right",
-          autoClose: 500,
+          autoClose: 300,
           hideProgressBar: true,
           closeOnClick: false,
           pauseOnHover: true,
@@ -171,12 +175,13 @@ function Contextprovider(props) {
       const jsondata = await res.json()
       if (res.status === 200) {
         setcdata(jsondata)
+        localStorage.setItem("cartamt",jsondata[0].cartamt) //for update cart amount
         // console.log(jsondata);
 
 
       }
     } catch (e) {
-      console.log("get cart product err" + e);
+      // console.log("get cart product err" + e);
     }
   }
 
@@ -206,7 +211,7 @@ function Contextprovider(props) {
     }
   }
   // plus item
-  const plusitem = async(id) => {
+  const plusitem = async (id) => {
     try {
 
       const res = await fetch("http://localhost:5000/cart/plus", {
@@ -221,17 +226,18 @@ function Contextprovider(props) {
       })
       let data = await res.json()
       if (res.status === 200) {
-        console.log(data);
         let data2 = parseInt(localStorage.getItem("count"))
         localStorage.setItem("count", data2 + 1)
-        setreload({})
+        setreload({}) //for nav re-render
 
-       let newobj=JSON.parse(JSON.stringify(cdata))
+        localStorage.setItem("cartamt",data.cartamt) //update cart
+
+        let newobj = JSON.parse(JSON.stringify(cdata))
         for (let index = 0; index < newobj.length; index++) {
           const elem = newobj[index];
-          if(elem._id===id){
-            newobj[index].quantity=data.quantity
-            newobj[index].price=data.price
+          if (elem._id === id) {
+            newobj[index].quantity = data.quantity
+            newobj[index].price = data.price
 
             break;
           }
@@ -240,11 +246,11 @@ function Contextprovider(props) {
       }
     }
     catch (error) {
-      console.log("plus item"+error);
+      console.log("plus item" + error);
     }
   }
   // minus item
-  const minusitem = async(id) => {
+  const minusitem = async (id) => {
     try {
 
       const res = await fetch("http://localhost:5000/cart/minus", {
@@ -259,16 +265,21 @@ function Contextprovider(props) {
       })
       let data = await res.json()
       if (res.status === 200) {
-        console.log(data);
         let data2 = parseInt(localStorage.getItem("count"))
         localStorage.setItem("count", data2 - 1)
         setreload({})
-        let newobj=JSON.parse(JSON.stringify(cdata))
+        localStorage.setItem("cartamt",data.cartamt)//update cart amount
+
+        if (data.quantity === 0) {
+          deleteproduct(id) //delete product 
+
+        }
+        let newobj = JSON.parse(JSON.stringify(cdata))
         for (let index = 0; index < newobj.length; index++) {
           const elem = newobj[index];
-          if(elem._id===id){
-            newobj[index].quantity=data.quantity
-            newobj[index].price=data.price
+          if (elem._id === id) {
+            newobj[index].quantity = data.quantity
+            newobj[index].price = data.price
 
             break;
           }
@@ -277,15 +288,136 @@ function Contextprovider(props) {
       }
     }
     catch (error) {
-      console.log("minus item"+error);
+      console.log("minus item" + error);
     }
   }
-  // localStorage.setItem("count",count)
+
+  // empty cart
+  const deleteall = async () => {
+    try {
+      const res = await fetch("http://localhost:5000/cart/deleteall", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "auth-token": localStorage.getItem("token")
+        }
+      })
+
+      await res.json()
+      if (res.status === 200) {
+        localStorage.setItem("count", 0) //empty all
+        setcdata([])
+      }
+    } catch (e) {
+      console.log("delete all err" + e);
+    }
+  }
+  // put quantity
+  const putqty = async (qty) => {
+    try {
+      const res = await fetch("http://localhost:5000/cart/putqty", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "auth-token": localStorage.getItem("token")
+        },
+        body: JSON.stringify({ qty })
+      })
+      await res.json()
+      if (res.status === 200) {
+        // console.log("set qty");
+      }
+    } catch (e) {
+      console.log("put qty err" + e);
+
+    }
+  }
+  // get quantity
+  const getqty = async (id) => {
+    try {
+      const res = await fetch("http://localhost:5000/cart/getqty", {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          "auth-token": localStorage.getItem("token")
+        }
+      })
+      const data = await res.json()
+      if (res.status === 200) {
+
+        if (data === null) { //jyare cart ma entery no padi hoy to user id na hoy to response null male
+
+          localStorage.setItem("count", 0)
+        } else {
+          localStorage.setItem("count", data.totalqty) //if userid's data availabel then put updated qty from table
+
+        }
+
+      }
+    } catch (e) {
+      console.log("put qty err" + e);
+
+    }
+  }
+
+  // post for transfer data cart to your order
+  const yourorder=async(hno,area,landmark,cod,city)=>{
+try {
+  const res=await fetch("http://localhost:5000/yourorder",{
+    method:"POST",
+    headers:{
+      "Content-Type":"application/json",
+      "auth-token":localStorage.getItem("token")
+    },
+    body:JSON.stringify({hno,area,landmark,city,cod})
+  })
+  const jsondata=await res.json()
+  if(res.status===201)
+  {
+    console.log("order entery done");
+    localStorage.setItem("count",0)
+    console.log(jsondata);
+  }
+} catch (e) {
+  console.log(`your order err ${e}`);
+  
+}
+}
+
+// getyourorder
+const getyourorder=async()=>{
+  console.log("ave che");
+  try {
+    const res=await fetch("http://localhost:5000/yourorder/getorders",{
+    method:"GET",
+    headers:{
+      "Content-Type":"application/json",
+      "auth-token":localStorage.getItem("token")
+    }
+  })
+  const jsondata=await res.json()
+  if(res.status===200)
+  {
+    
+    // console.log("data"+jsondata[0]);
+    localStorage.setItem("rno",jsondata[0].rno.toString())
+    localStorage.setItem("vno",jsondata[0].vno.toString())
+    localStorage.setItem("date",jsondata[0].date.toString())
+    localStorage.setItem("total",jsondata[0].cartamt.toString())
+    localStorage.setItem("address",`${jsondata[0].hno.toString()+","+jsondata[0].area.toString()+","+jsondata[0].landmark.toString()+","+jsondata[0].city.toString()}`)
+    setodata(jsondata)
+  }
+  } catch (e) {
+    
+    console.log(`get your order err ${e}`);
+    }
+  }
   return (
+
     <>
-      <refcontext.Provider value={{ refin, refup, refpass, refclosepass, refopass, refnpass, refrpass }}>
+      <refcontext.Provider value={{ refin, refup, refpass, refclosepass, refopass, refnpass, refrpass ,refloc,reflocclose,reflocsub}}>
         <reloadcontext.Provider value={{ reload, setreload }}>
-          <dbcon.Provider value={{ getcontact, condata, changepass, getproducts, pdata, addtocart, getcartproducts, cdata, deleteproduct, count, plusitem, minusitem }}>
+          <dbcon.Provider value={{ getcontact, condata, changepass, getproducts, pdata, addtocart, getcartproducts, cdata, deleteproduct, count, plusitem, minusitem, deleteall, putqty, getqty,yourorder,getyourorder,odata }}>
 
             {props.children}
           </dbcon.Provider>

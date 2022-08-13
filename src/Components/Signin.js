@@ -13,6 +13,7 @@ function Signin() {
     // context for ref modal trigger btn -- triggerd from nav
     const refcon = useContext(refcontext)
     const condb=useContext(dbcon)
+    let {getqty}=condb
     
     const refclose = useRef(null)
     const subref = useRef(null)
@@ -35,7 +36,8 @@ function Signin() {
             localStorage.setItem("token", token)
             setData({ email: "", pass: "" })
             refclose.current.click()
-            condb.getcontact() //to get userdata when signup
+            condb.getcontact() //to get userdata when signup for name
+            getqty()
         }
         else{
             // refclose.current.click()

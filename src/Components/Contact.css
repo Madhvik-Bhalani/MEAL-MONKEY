@@ -3,6 +3,10 @@
   box-shadow: 0.6px 0.6px 2rem rgba(30, 30, 31, 0.1);
   border-radius: 10px;
 }
+.contactbox{
+  /* background: linear-gradient(to top left, rgb(248, 243, 252), rgb(242, 239, 250)) */
+
+}
 span {
   text-shadow: 0.3px 0.3px 0.3px #e99f27;
   color: #540640;
