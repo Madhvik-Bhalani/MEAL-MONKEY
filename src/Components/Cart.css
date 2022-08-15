@@ -6,7 +6,7 @@
 .itemcontainer {
   width: 100%;
   box-shadow: 0.6px 0.6px 2rem rgba(35, 52, 53, 0.1);
-  height: 400px;
+  height: 410px;
   border-radius: 15px;
   background-color: white;
   
@@ -27,8 +27,8 @@ hr {
   color: #540640;
 }
 .product-img img {
-  width: 105px;
-  height: 95px;
+  width: 130px;
+  height: 90px;
   transition-property: transform;
   transition-duration: 0.4s;
 }
@@ -92,12 +92,17 @@ hr {
 
 
 .errimg{
-  height: 520px;
+  height: 530px;
   display: flex;
   justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 90px;
 }
 .errimg img{
-  height: 500px;
+  height: 490px;
+  /* width: 100px; */
+
 }
 
 .bottomicons1,.bottomicons2{

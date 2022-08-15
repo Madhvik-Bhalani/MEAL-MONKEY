@@ -7,4 +7,20 @@
     
     /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
     /* background: linear-gradient(to top left, rgb(250, 247, 253), rgb(244, 243, 248))   */
+    /* background-color: rgb(251 255 255); */
   }
+  .errimgorder{
+    height: 530px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 90px;
+  }
+  .errimgorder img{
+    height: 480px;
+    /* width: 100px; */
+
+  }
+  
+  

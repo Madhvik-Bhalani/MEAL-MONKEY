@@ -1,6 +1,7 @@
 import React, { useContext } from 'react'
 import reloadcontext from '../Context/Reloadcontext'
 import Hero from './Hero'
+import Offeres from './Offeres'
 import Products from './Products'
 import Signin from './Signin'
 import Signup from './Signup'
@@ -14,6 +15,7 @@ function Home() {
     return (
         <>
             {!localStorage.getItem("token")&&<Hero />}
+            {localStorage.getItem("token")&&<Offeres/>}
             <Signin />
             <Signup />
             {!localStorage.getItem("token")&&<Speciality />}

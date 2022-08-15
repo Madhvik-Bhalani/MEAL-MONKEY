@@ -23,7 +23,7 @@ function Item(props) {
         <>
             <div className="col-md-3 d-flex justify-content-center mt-4">
 
-                <div className="card cardp" style={{ width: "355px" }}>
+                <div className="card cardp" style={{ width: "330px" }}>
                     <div className="imgbox">
 
                         <img src={props.img} className="card-img-top" alt="..." />

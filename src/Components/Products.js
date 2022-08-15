@@ -12,10 +12,10 @@ function Products() {
 
     return (
         <>
-            <div className="container-fluid  mt-2 mb-4">
-                <h4 className='text-center text-capitalize mt-4' style={{fontSize:"28px",color:"#540640",textShadow:".5px .5px .5px #e99f27"}}>make your meals delightful</h4>
+            <div className="container-fluid  mt-3 mb-4">
+                <h4 className='text-center text-capitalize mt-5' style={{fontSize:"28px",color:"#540640",textShadow:".5px .5px .5px #e99f27"}}>make your meals delightful</h4>
             
-                <h5 className='text-center' style={{marginTop:"-5px"}}><span style={{fontSize:"30px",color:"#540640"}}>————</span> <span style={{color:"#e99f27",fontSize:"25px"}}>X</span> <span style={{fontSize:"30px",color:"#540640"}}>————</span></h5>
+                <h5 className='text-center' style={{marginTop:"-7px"}}><span style={{fontSize:"30px",color:"#540640"}}>————</span> <span style={{color:"#e99f27",fontSize:"21px"}}>X</span> <span style={{fontSize:"30px",color:"#540640"}}>————</span></h5>
                 <div className="row px-4 py-1">
 
                     {

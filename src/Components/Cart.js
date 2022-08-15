@@ -3,16 +3,18 @@ import './Cart.css'
 import { Scrollbars } from 'react-custom-scrollbars-2';
 import dbcon from '../Context/Dbcon';
 import Citem from './Citem';
-import img from '../Assets/notem.jpg'
+import img from '../Assets/e1.svg'
 import refcontext from '../Context/Refcontext';
 import Dellocation from './Dellocation';
 function Cart() {
     const condb = useContext(dbcon)
-    let { getcartproducts, cdata, deleteall } = condb
+    let { getcartproducts, cdata, deleteall, getcontact } = condb
 
-    const refcon=useContext(refcontext)
+    const refcon = useContext(refcontext)
     useEffect(() => {
         getcartproducts()
+        getcontact()
+
         // eslint-disable-next-line
     }, [])
 
@@ -20,17 +22,18 @@ function Cart() {
         deleteall()
     }
 
-    const checkoutHandler=()=>{
+    const checkoutHandler = () => {
         refcon.refloc.current.click()
     }
     return (
         <>
-        <Dellocation/>
+            <Dellocation />
             <div className="container">
-                {cdata.length !== 0 ? <h4 className='text-center text-capitalize mt-3' style={{ fontSize: "28px", color: "#540640", textShadow: ".5px .5px .5px #e99f27" }}>your food cart</h4> : <h4 className='text-center text-capitalize mt-3' style={{ fontSize: "28px", color: "#540640", textShadow: ".5px .5px .5px #e99f27" }}>your cart is empty</h4>}
-                
+                {cdata.length !== 0 &&
+                    <><h4 className='text-center text-capitalize mt-4' style={{ fontSize: "28px", color: "#540640", textShadow: ".5px .5px .5px #e99f27" }}>your food cart</h4>
 
-                <h5 className='text-center' style={{ marginTop: "-5px" }}><span style={{ fontSize: "30px", color: "#540640" }}>————</span> <span style={{ color: "#e99f27", fontSize: "25px" }}>X</span> <span style={{ fontSize: "30px", color: "#540640" }}>————</span></h5>
+
+                        <h5 className='text-center' style={{ marginTop: "-11px" }}><span style={{ fontSize: "30px", color: "#540640" }}>————</span> <span style={{ color: "#e99f27", fontSize: "21px" }}>X</span> <span style={{ fontSize: "30px", color: "#540640" }}>————</span></h5></>}
 
                 {cdata.length !== 0 ? <><div className="itemcontainer container mt-4 mb-2 p-3">
                     <Scrollbars>
@@ -56,7 +59,10 @@ function Cart() {
                         </div>
                     </div>
                 </>
-                    : <div className='errimg'>
+                    : <div className='errimg mt-5'>
+                        <h4 className='text-center text-capitalize mt-4' style={{ fontSize: "28px", color: "#540640", textShadow: ".5px .5px .5px #e99f27" }}>your cart is empty</h4>
+                        <h5 className='text-center' style={{ marginTop: "-11px" }}><span style={{ fontSize: "30px", color: "#540640" }}>————</span> <span style={{ color: "#e99f27", fontSize: "21px" }}>X</span> <span style={{ fontSize: "30px", color: "#540640" }}>————</span></h5>
+
                         <img src={img} alt="" />
                     </div>}
             </div>

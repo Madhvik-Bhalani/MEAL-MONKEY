@@ -4,9 +4,12 @@ import reloadcontext from './Reloadcontext'
 import dbcon from './Dbcon.js'
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { useNavigate } from "react-router-dom";
+
 
 
 function Contextprovider(props) {
+
   const refin = useRef(null)
   const refup = useRef(null)
   const refpass = useRef(null)
@@ -51,6 +54,7 @@ function Contextprovider(props) {
       const jsondata = await res.json()
       if (res.status === 200) {
         setcondata(jsondata)
+        // console.log(jsondata);
         localStorage.setItem("name", jsondata.name.toString())
       }
     } catch (e) {
@@ -141,7 +145,7 @@ function Contextprovider(props) {
       if (res.status === 201) {
 
 
-        toast.success(`added to cart`, {
+        toast.success(`item added to cart`, {
           position: "top-right",
           autoClose: 300,
           hideProgressBar: true,
@@ -175,7 +179,7 @@ function Contextprovider(props) {
       const jsondata = await res.json()
       if (res.status === 200) {
         setcdata(jsondata)
-        localStorage.setItem("cartamt",jsondata[0].cartamt) //for update cart amount
+        localStorage.setItem("cartamt", jsondata[0].cartamt) //for update cart amount
         // console.log(jsondata);
 
 
@@ -230,7 +234,7 @@ function Contextprovider(props) {
         localStorage.setItem("count", data2 + 1)
         setreload({}) //for nav re-render
 
-        localStorage.setItem("cartamt",data.cartamt) //update cart
+        localStorage.setItem("cartamt", data.cartamt) //update cart
 
         let newobj = JSON.parse(JSON.stringify(cdata))
         for (let index = 0; index < newobj.length; index++) {
@@ -268,7 +272,7 @@ function Contextprovider(props) {
         let data2 = parseInt(localStorage.getItem("count"))
         localStorage.setItem("count", data2 - 1)
         setreload({})
-        localStorage.setItem("cartamt",data.cartamt)//update cart amount
+        localStorage.setItem("cartamt", data.cartamt)//update cart amount
 
         if (data.quantity === 0) {
           deleteproduct(id) //delete product 
@@ -361,63 +365,56 @@ function Contextprovider(props) {
   }
 
   // post for transfer data cart to your order
-  const yourorder=async(hno,area,landmark,cod,city)=>{
-try {
-  const res=await fetch("http://localhost:5000/yourorder",{
-    method:"POST",
-    headers:{
-      "Content-Type":"application/json",
-      "auth-token":localStorage.getItem("token")
-    },
-    body:JSON.stringify({hno,area,landmark,city,cod})
-  })
-  const jsondata=await res.json()
-  if(res.status===201)
-  {
-    console.log("order entery done");
-    localStorage.setItem("count",0)
-    console.log(jsondata);
-  }
-} catch (e) {
-  console.log(`your order err ${e}`);
-  
-}
-}
+  let navigate = useNavigate()
+  const yourorder = async (hno, area, pin, cod, city) => {
+    try {
+      const res = await fetch("http://localhost:5000/yourorder", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "auth-token": localStorage.getItem("token")
+        },
+        body: JSON.stringify({ hno, area, pin, city, cod })
+      })
+      await res.json()
+      if (res.status === 201) {
+        // console.log("order entery done");
+        localStorage.setItem("count", 0)
+        // console.log(jsondata);
+        navigate('/yourorder');
+      }
+    } catch (e) {
+      console.log(`your order err ${e}`);
 
-// getyourorder
-const getyourorder=async()=>{
-  console.log("ave che");
-  try {
-    const res=await fetch("http://localhost:5000/yourorder/getorders",{
-    method:"GET",
-    headers:{
-      "Content-Type":"application/json",
-      "auth-token":localStorage.getItem("token")
-    }
-  })
-  const jsondata=await res.json()
-  if(res.status===200)
-  {
-    
-    // console.log("data"+jsondata[0]);
-    localStorage.setItem("rno",jsondata[0].rno.toString())
-    localStorage.setItem("vno",jsondata[0].vno.toString())
-    localStorage.setItem("date",jsondata[0].date.toString())
-    localStorage.setItem("total",jsondata[0].cartamt.toString())
-    localStorage.setItem("address",`${jsondata[0].hno.toString()+","+jsondata[0].area.toString()+","+jsondata[0].landmark.toString()+","+jsondata[0].city.toString()}`)
-    setodata(jsondata)
-  }
-  } catch (e) {
-    
-    console.log(`get your order err ${e}`);
     }
   }
+
+  // getyourorder
+  const getyourorder = async () => {
+    try {
+      const res = await fetch("http://localhost:5000/yourorder/getorders", {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          "auth-token": localStorage.getItem("token")
+        }
+      })
+      const jsondata = await res.json()
+      if (res.status === 200) {
+        setodata(jsondata)
+      }
+    } catch (e) {
+
+      console.log(`get your order err ${e}`);
+    }
+  }
+  
   return (
 
     <>
-      <refcontext.Provider value={{ refin, refup, refpass, refclosepass, refopass, refnpass, refrpass ,refloc,reflocclose,reflocsub}}>
+      <refcontext.Provider value={{ refin, refup, refpass, refclosepass, refopass, refnpass, refrpass, refloc, reflocclose, reflocsub }}>
         <reloadcontext.Provider value={{ reload, setreload }}>
-          <dbcon.Provider value={{ getcontact, condata, changepass, getproducts, pdata, addtocart, getcartproducts, cdata, deleteproduct, count, plusitem, minusitem, deleteall, putqty, getqty,yourorder,getyourorder,odata }}>
+          <dbcon.Provider value={{ getcontact, condata, changepass, getproducts, pdata, addtocart, getcartproducts, cdata, deleteproduct, count, plusitem, minusitem, deleteall, putqty, getqty, yourorder, getyourorder, odata }}>
 
             {props.children}
           </dbcon.Provider>

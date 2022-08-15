@@ -1,85 +1,85 @@
-.logoimg{
-    width: 115px;
-    height: 110px;
+.logoimg {
+  width: 115px;
+  height: 110px;
 }
 
+/* .navbox{
+    box-shadow: 0px 1px 1px 1px rgb(194, 194, 194);
+} */
 
-li h1{
-    color: #e99f27;
-}
-
-.authbtns button{
-font-size: 19px;
-}
-.signin{
-    font-weight: bold;
-    border: none;
-}
-.signin:hover{
-    color: #e99f27;
-}
-.signup:hover{
-    
-    background-color:#540640 ;
-    color: white;
-}
-.signup{
-    background-color:#540640 ;
-    color: white;
+li h1 {
+  color: #e99f27;
 }
 
-
-
-.fa-bars{
-    font-size: 25px;
-    margin:0 5px 5px 0;
-    color:#540640;
+.authbtns button {
+  font-size: 19px;
+}
+.signin {
+  font-weight: bold;
+  border: none;
+}
+.signin:hover {
+  color: #e99f27;
+}
+.signup:hover {
+  background-color: #540640;
+  color: white;
+}
+.signup {
+  background-color: #540640;
+  color: white;
 }
 
-.fa-bars:hover{
-    
-    color:#e99f27;
+.fa-bars {
+  font-size: 25px;
+  margin: 0 5px 5px 0;
+  color: #540640;
 }
 
-
-.sidebox{
-    display: flex;
-    margin-right:50px;
-}
-.sidebox li{
-    list-style: none;
-    font-size: 25px;
-    margin: 0px 12px;
-    padding: 3px;
-    color: #540640;
-    transition-property: color;
-    transition-duration: .3s;
-}
-.sidebox li:hover,.sidebox .links:hover {
-    color: #e99f27;
-}
-.sidebox li:hover .nicons,.sidebox .links:hover i{
-    transform: translateX(3px);
-}
-.sidebox .links{
-    color: #540640;
-    text-decoration: none;
-}
-.sidebox i{
-    color: #540640;
-    margin-right: 3px;
-    transition-duration: .3s;
-    transition-property: transform;
-    
-    
+.fa-bars:hover {
+  color: #e99f27;
 }
 
-.logout,.cart{
-    cursor: pointer;
+.sidebox {
+  display: flex;
+  margin-right: 50px;
+}
+.sidebox li {
+  list-style: none;
+  font-size: 25px;
+  margin: 0px 12px;
+  padding: 3px;
+  color: #540640;
+  transition-property: color;
+  transition-duration: 0.3s;
+}
+.sidebox li:hover,
+.sidebox .links:hover {
+  color: #e99f27;
+}
+.sidebox li:hover .nicons,
+.sidebox .links:hover i {
+  color: #e99f27;
+  transform: translateX(3px);
+}
+.sidebox .links {
+  color: #540640;
+  text-decoration: none;
+}
+.sidebox i {
+  color: #540640;
+  margin-right: 3px;
+  transition-duration: 0.3s;
+  transition-property: transform;
 }
 
-
-.sidebox .cart i{
-    transition: none!important;
-    
+.logout,
+.cart {
+  cursor: pointer;
 }
+
+.sidebox .cart i {
+  transition: none !important;
+}
+.sidebox .cart i:hover {
+color:#e99f27}

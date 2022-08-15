@@ -1,0 +1,11 @@
+.divHome {
+    background-color: #000000;
+  }
+  .homeimg {
+    width: 285px;
+    height: 270px;
+    transition: 0.4s all ease;
+  }
+  .homeimg:hover {
+    transform: scale(1.1);
+  }

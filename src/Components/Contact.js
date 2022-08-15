@@ -63,8 +63,8 @@ function Contact() {
             <div className="container-fluid contactbox  p-3" style={{ height: "730px", padding: "35px 15px", }}>
 
                 <h2 className='text-center' style={{ color: "#540640",textShadow:".5px .5px .5px #e99f27" }}>Get In Touch</h2>
-                <h5 className='text-center' style={{marginTop:"-5px"}}><span style={{fontSize:"30px",color:"#540640"}}>————</span> <span style={{color:"#e99f27",fontSize:"25px"}}>X</span> <span style={{fontSize:"30px",color:"#540640"}}>————</span></h5>
-                 <div className="container px-4 mt-4 text-center">
+                <h5 className='text-center' style={{marginTop:"-11px"}}><span style={{fontSize:"30px",color:"#540640"}}>————</span> <span style={{color:"#e99f27",fontSize:"21px"}}>X</span> <span style={{fontSize:"30px",color:"#540640"}}>————</span></h5>
+                 <div className="container px-4 mt-2 text-center">
                     <div className="row gx-5" >
                         <div className="col mt-4 ">
                             <div className="p-3 colbox "><h6><i style={{ color: "#540640" }} className="fa-solid fa-mobile-screen-button"></i> </h6><span>Phone:+91 7490812260</span></div>

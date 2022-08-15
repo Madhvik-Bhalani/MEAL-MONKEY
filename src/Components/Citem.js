@@ -23,7 +23,7 @@ function Citem(props) {
                 <div className="product-img">
                     <div className="imgbox">
 
-                        <img src={props.img} alt="" />
+                        <img src={props.img} alt="" className="img-fluid" />
                     </div>
                 </div>
                 <div className="title">

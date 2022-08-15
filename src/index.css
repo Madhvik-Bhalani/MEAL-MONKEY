@@ -11,3 +11,6 @@ input::-webkit-inner-spin-button {
 }
 
 
+select.form-control {
+  -webkit-appearance: menulist;
+}

@@ -12,11 +12,13 @@ import Changepass from './Components/Changepass';
 import Cart from './Components/Cart';
 import Footer from './Components/Footer';
 import Yourorder from './Components/Yourorder';
+import Contextprovider from './Context/Contextprovider';
 
 function App() {
   return (
     <>
       <BrowserRouter>
+      <Contextprovider>
         <Navbar />
         <Changepass/>
         <Routes>
@@ -26,6 +28,7 @@ function App() {
           <Route path="/yourorder" element={<Yourorder/>} />
         </Routes>
         <Footer/>
+        </Contextprovider>
       </BrowserRouter>
     </>
   )
