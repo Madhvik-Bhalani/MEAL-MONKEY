@@ -4,6 +4,7 @@ import hero from '../Assets/hero4.jpg'
 
 function Hero() {
 
+    document.title="Meal Monkey-Order Food Online"
 
     return (
         <>

@@ -4,6 +4,7 @@ import Orderitem from './Orderitem'
 import dbcon from '../Context/Dbcon'
 import Scrollbars from 'react-custom-scrollbars-2'
 import img from '../Assets/e2.svg'
+
 function Yourorder() {
     const condb = useContext(dbcon)
     let { getyourorder, odata } = condb
@@ -12,6 +13,8 @@ function Yourorder() {
         getyourorder()
         // eslint-disable-next-line
     }, [])
+
+    document.title="Meal Monkey-Your Orders"
 
     return (
         <>

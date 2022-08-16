@@ -49,7 +49,7 @@ function Navbar() {
         refpass.current.click()
     }
 
-    let location=useLocation()
+    let location = useLocation()
 
     return (
         <>
@@ -74,11 +74,11 @@ function Navbar() {
 
                             </div>
                             : <div className='sidebox'>
-                                <li ><i style={{color:location.pathname==="/"?"#e99f27":"",textShadow:location.pathname==="/"?".35px .35px .35px #540660":""}} className="fa-solid fa-house-chimney nicons"></i> <Link to="/" style={{color:location.pathname==="/"?"#e99f27":"",textShadow:location.pathname==="/"?".37px .37px .37px #540660":""}} className='links'>Home</Link></li>
+                                <li ><i style={{ color: location.pathname === "/" ? "#e99f27" : "", textShadow: location.pathname === "/" ? ".35px .35px .35px #540660" : "" }} className="fa-solid fa-house-chimney nicons"></i> <Link to="/" style={{ color: location.pathname === "/" ? "#e99f27" : "", textShadow: location.pathname === "/" ? ".37px .37px .37px #540660" : "" }} className='links'>Home</Link></li>
 
 
 
-                                <li><i style={{color:location.pathname==="/contact"?"#e99f27":"",textShadow:location.pathname==="/contact"?".35px .35px .35px #540660":""}} className="fa-solid fa-address-card nicons"></i> <Link to="/contact" className='links' style={{color:location.pathname==="/contact"?"#e99f27":"",textShadow:location.pathname==="/contact"?".37px .37px .37px #540660":""}}>Contact Us</Link></li>
+                                <li><i style={{ color: location.pathname === "/contact" ? "#e99f27" : "", textShadow: location.pathname === "/contact" ? ".35px .35px .35px #540660" : "" }} className="fa-solid fa-address-card nicons"></i> <Link to="/contact" className='links' style={{ color: location.pathname === "/contact" ? "#e99f27" : "", textShadow: location.pathname === "/contact" ? ".37px .37px .37px #540660" : "" }}>Contact Us</Link></li>
 
 
                                 <li className="nav-item dropdown">
@@ -101,7 +101,7 @@ function Navbar() {
                                 </span>
                                 <li className='cart'>
                                     <Link to="/cart" >
-                                        <i className="fa-solid fa-cart-arrow-down" style={{ transition: "none", transitionProperty: "none", color:location.pathname==="/cart"?"#e99f27":"",textShadow:location.pathname==="/cart"?".37px .37px .37px #540660":""}}>
+                                        <i className="fa-solid fa-cart-arrow-down" style={{ transition: "none", transitionProperty: "none", color: location.pathname === "/cart" ? "#e99f27" : "", textShadow: location.pathname === "/cart" ? ".37px .37px .37px #540660" : "" }}>
 
                                         </i>
                                     </Link></li>

@@ -2,7 +2,7 @@ import React, { useContext, useRef, useState } from 'react'
 import refcontext from '../Context/Refcontext'
 import logo from '../Assets/logo.png'
 import dbcon from '../Context/Dbcon'
-import { ToastContainer, toast } from 'react-toastify';
+import {  toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 
@@ -111,7 +111,7 @@ function Signin() {
                     </div>
                 </div>
             </div>
-            <ToastContainer/>
+            
         </>
     )
 }

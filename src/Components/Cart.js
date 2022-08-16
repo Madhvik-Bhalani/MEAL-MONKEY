@@ -25,6 +25,7 @@ function Cart() {
     const checkoutHandler = () => {
         refcon.refloc.current.click()
     }
+    document.title="Meal Monkey-Your Cart"
     return (
         <>
             <Dellocation />

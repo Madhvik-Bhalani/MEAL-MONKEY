@@ -2,13 +2,14 @@ import React, { useContext, useState } from 'react'
 import refcontext from '../Context/Refcontext'
 import logo from '../Assets/logo.png'
 import dbcon from '../Context/Dbcon'
-import { toast,ToastContainer } from 'react-toastify';
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 function Dellocation() {
     const refcon = useContext(refcontext)
     let { refloc, reflocclose, reflocsub } = refcon
     const [data, setdata] = useState({ hno: "", area: "", pin: "", cod: "", city: "" })
+    const [check, setcheck] = useState({edit:false,same:false})
 
     const condb = useContext(dbcon)
     let { yourorder, condata } = condb
@@ -16,9 +17,27 @@ function Dellocation() {
         e.preventDefault()
 
         let { hno, area, pin, cod, city } = data
-        yourorder(hno, area, pin, cod, city)
-        setdata({ hno: "", area: "", pin: "", cod: "", city: "" })
-        reflocclose.current.click()
+        if (condata.hno!==undefined&&(check.edit===false||check.same===false)) {
+            toast.warning(`Please Select Same As Above Or Else Edit.`, {
+                position: "top-right",
+                autoClose: 2300,
+                hideProgressBar: true,
+                closeOnClick: false,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                style: {
+                    textTransform: "capitalize"
+                }
+            })
+        }
+        else {
+
+            yourorder(hno, area, pin, cod, city)
+            setdata({ hno: "", area: "", pin: "", cod: "", city: "" })
+            reflocclose.current.click()
+        }
+
 
 
     }
@@ -48,9 +67,11 @@ function Dellocation() {
         })
         setdata({ hno: condata.hno, area: condata.area, pin: condata.pin, city: condata.city, cod: condata.cod })
         condata.hno = undefined
+        setcheck({edit:true})
     }
     const sameadd = () => {
         setdata({ hno: condata.hno, area: condata.area, pin: condata.pin, city: condata.city, cod: condata.cod })
+        setcheck({same:true})
     }
 
 
@@ -79,21 +100,28 @@ function Dellocation() {
                                     <label htmlFor="area" className="form-label text-capitalize">Area, Street, Sector, Village</label>
                                     <input type="text" className="form-control" id="area" name="area" required onChange={changeHandler} minLength={5} value={data.area || condata.area || " "} readOnly={condata.hno !== undefined ? true : false} />
                                 </div>
-                                <div className="mb-3">
-                                    <label htmlFor="pin" className="form-label text-capitalize">Pincode</label>
-                                    <input type="text" className="form-control" id="pin" name="pin" required onChange={changeHandler} minLength={5} value={data.pin || condata.pin || " "} readOnly={condata.hno !== undefined ? true : false} />
-                                </div>
                                 <div className="mb-3 d-flex justify-content-between">
                                     <div>
 
-                                        <label htmlFor="cod" className="form-label text-capitalize" style={{ marginLeft: "5px" }}>Payment Mode</label>
-                                        <select required className="form-select" aria-label="Default select example" name='cod' id='cod' style={{ width: "220px" }} onChange={changeHandler} value={data.cod || condata.cod || " "} disabled={condata.hno !== undefined ? true : false}>
-                                            <option value="select payment mode" >Select Payment Mode</option>
-                                            <option value="cash on delivery" >Cash On delivery</option>
-
-                                        </select>
+                                        <label htmlFor="pin" className="form-label text-capitalize">Your Pincode</label>
+                                        <input type="text" className="form-control" id="pin" name="pin" required onChange={changeHandler} minLength={5} value={data.pin || condata.pin || " "} readOnly={condata.hno !== undefined ? true : false} />
                                     </div>
                                     <div>
+
+                                        <label htmlFor="city" className="form-label text-capitalize text-end d-block mx-2">Your City</label>
+                                        <input type="text" className="form-control" id="city" name="city" required onChange={changeHandler} minLength={5} value={data.city || condata.city || " "} readOnly={condata.hno !== undefined ? true : false} />
+                                    </div>
+                                </div>
+                                <div>
+
+                                    <label htmlFor="cod" className="form-label text-capitalize" style={{ marginLeft: "5px" }}>Payment Mode</label>
+                                    <select required className="form-select" aria-label="Default select example" name='cod' id='cod' onChange={changeHandler} value={data.cod || condata.cod || " "} disabled={condata.hno !== undefined ? true : false}>
+                                        <option value="select payment mode" >Select Payment Mode</option>
+                                        <option value="cash on delivery" >Cash On delivery</option>
+
+                                    </select>
+                                </div>
+                                {/* <div>
 
                                         <label htmlFor="city" className="form-label text-capitalize text-end d-block " style={{ marginRight: "5px" }}>Select Your City</label>
                                         <select required className="form-select" aria-label="Default select example" id='city' style={{ width: "220px" }} name="city" onChange={changeHandler} value={data.city || condata.city || " "} disabled={condata.hno !== undefined ? true : false}>
@@ -104,15 +132,14 @@ function Dellocation() {
 
 
                                         </select>
-                                    </div>
+                                    </div> */}
 
 
-                                </div>
-                                <div className='d-flex justify-content-between'>
+                                <div className='d-flex justify-content-between mt-3'>
 
 
                                     <div className={`form-check d-${condata.hno === undefined ? "none" : ""}`}>
-                                        <input className={`form-check-input`} type="checkbox" value="" id="flexCheckDefault" onChange={editmode} />
+                                        <input className={`form-check-input`} type="checkbox" value={check.edit} id="flexCheckDefault" onChange={editmode} />
                                         <label className="form-check-label" htmlFor="flexCheckDefault">
                                             Enable Edit Mode
                                         </label>
@@ -120,7 +147,7 @@ function Dellocation() {
 
 
                                     <div className={`form-check d-${condata.hno === undefined ? "none" : ""}`}>
-                                        <input className={`form-check-input d-${condata.hno === undefined ? "none" : ""}`} type="checkbox" value="" id="flexCheckDefault2" onChange={sameadd} />
+                                        <input className={`form-check-input d-${condata.hno === undefined ? "none" : ""}`} type="checkbox" value={check.same} id="flexCheckDefault2" onChange={sameadd} />
                                         <label className="form-check-label" htmlFor="flexCheckDefault2">
                                             Same As Above
                                         </label>
@@ -148,7 +175,6 @@ function Dellocation() {
                     </div>
                 </div>
             </div>
-            <ToastContainer/>
         </>
     )
 }

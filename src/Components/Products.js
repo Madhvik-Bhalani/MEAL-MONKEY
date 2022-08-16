@@ -10,6 +10,8 @@ function Products() {
         // eslint-disable-next-line
     }, [])
 
+    document.title="Meal Monkey-Make Your Meals Delightful"
+
     return (
         <>
             <div className="container-fluid  mt-3 mb-4">

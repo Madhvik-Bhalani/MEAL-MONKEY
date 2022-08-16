@@ -58,6 +58,8 @@ function Contact() {
     }
 
 
+    document.title="Meal Monkey-Get In Touch"
+
     return (
         <>
             <div className="container-fluid contactbox  p-3" style={{ height: "730px", padding: "35px 15px", }}>

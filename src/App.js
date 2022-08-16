@@ -13,6 +13,8 @@ import Cart from './Components/Cart';
 import Footer from './Components/Footer';
 import Yourorder from './Components/Yourorder';
 import Contextprovider from './Context/Contextprovider';
+import { ToastContainer } from 'react-toastify';
+
 
 function App() {
   return (
@@ -20,6 +22,7 @@ function App() {
       <BrowserRouter>
       <Contextprovider>
         <Navbar />
+        
         <Changepass/>
         <Routes>
           <Route path="/" element={<Home />} />
@@ -28,6 +31,7 @@ function App() {
           <Route path="/yourorder" element={<Yourorder/>} />
         </Routes>
         <Footer/>
+        <ToastContainer/>
         </Contextprovider>
       </BrowserRouter>
     </>

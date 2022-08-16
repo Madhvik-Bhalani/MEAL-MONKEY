@@ -5,7 +5,7 @@ import dbcon from './Dbcon.js'
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useNavigate } from "react-router-dom";
-
+import Swal from 'sweetalert2'
 
 
 function Contextprovider(props) {
@@ -90,7 +90,7 @@ function Contextprovider(props) {
         }
       })
       refclosepass.current.click();
-      console.log(msg);
+      // console.log(msg);
       refopass.current.value = "";
       refnpass.current.value = "";
       refrpass.current.value = "";
@@ -374,13 +374,19 @@ function Contextprovider(props) {
           "Content-Type": "application/json",
           "auth-token": localStorage.getItem("token")
         },
-        body: JSON.stringify({ hno, area, pin, city, cod })
+        body: JSON.stringify({ hno, area, pin, cod, city })
       })
       await res.json()
       if (res.status === 201) {
-        // console.log("order entery done");
         localStorage.setItem("count", 0)
-        // console.log(jsondata);
+
+        Swal.fire({
+          title: 'Order Has Been placed!',
+          text: 'Your order will be delivered in next 30 minutes',
+          icon: 'success',
+          confirmButtonColor: "#2ec780",
+         
+        })
         navigate('/yourorder');
       }
     } catch (e) {
@@ -408,7 +414,7 @@ function Contextprovider(props) {
       console.log(`get your order err ${e}`);
     }
   }
-  
+
   return (
 
     <>
