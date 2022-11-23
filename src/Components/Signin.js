@@ -2,19 +2,19 @@ import React, { useContext, useRef, useState } from 'react'
 import refcontext from '../Context/Refcontext'
 import logo from '../Assets/logo.png'
 import dbcon from '../Context/Dbcon'
-import {  toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 
 
 function Signin() {
-  
+
 
     // context for ref modal trigger btn -- triggerd from nav
     const refcon = useContext(refcontext)
-    const condb=useContext(dbcon)
-    let {getqty}=condb
-    
+    const condb = useContext(dbcon)
+    let { getqty } = condb
+
     const refclose = useRef(null)
     const subref = useRef(null)
 
@@ -39,26 +39,26 @@ function Signin() {
             condb.getcontact() //to get userdata when signup for name
             getqty()
         }
-        else{
+        else {
             // refclose.current.click()
-            
-                toast.warn(`${token}`, {
-                    position: "top-right",
-                    autoClose: 2300,
-                    hideProgressBar: true,
-                    closeOnClick: false,
-                    pauseOnHover: true,
-                    draggable: true,
-                    progress: undefined,
-                    progressClassName:'bar',
-                    style:{
-                        textTransform:"capitalize"
-                      }
-    
-    
-                    });
-           
-            
+
+            toast.warn(`${token}`, {
+                position: "top-right",
+                autoClose: 2300,
+                hideProgressBar: true,
+                closeOnClick: false,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                progressClassName: 'bar',
+                style: {
+                    textTransform: "capitalize"
+                }
+
+
+            });
+
+
         }
     }
 
@@ -69,6 +69,7 @@ function Signin() {
     const changeHandler = (e) => {
         setData({ ...data, [e.target.name]: e.target.value })
     }
+
     return (
         <>
             <button type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop" style={{ display: "none" }} ref={refcon.refin}>
@@ -92,7 +93,11 @@ function Signin() {
                                 </div>
                                 <div className="mb-3">
                                     <label htmlFor="exampleInputPassword1" className="form-label text-capitalize">Password</label>
-                                    <input type="password" className="form-control" id="exampleInputPassword1" name="pass" required onChange={changeHandler} value={data.pass} />
+                                    <div>
+
+                                        <input type="password" className="form-control" id="pass2" name="pass" required onChange={changeHandler} value={data.pass} />
+                                 
+                                    </div>
                                 </div>
 
                                 <input type="submit" value="Sign In" ref={subref} style={{ display: "none" }} />
@@ -111,7 +116,7 @@ function Signin() {
                     </div>
                 </div>
             </div>
-            
+
         </>
     )
 }

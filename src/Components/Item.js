@@ -11,12 +11,10 @@ function Item(props) {
     let { addtocart } = condb
     const addtocartHandler = () => {
 
-        addtocart(props.product._id);
+        addtocart(props.product._id); //pass to api
         let data = parseInt(localStorage.getItem("count"))
         localStorage.setItem("count", data + 1)
         setreload({}) //for nav re-render
-
-
 
     }
     return (

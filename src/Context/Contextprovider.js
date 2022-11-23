@@ -54,8 +54,8 @@ function Contextprovider(props) {
       const jsondata = await res.json()
       if (res.status === 200) {
         setcondata(jsondata)
-        // console.log(jsondata);
-        localStorage.setItem("name", jsondata.name.toString())
+        // console.log(jsondata); //only single object
+        localStorage.setItem("name", jsondata.name.toString()) //to display on navbar
       }
     } catch (e) {
       console.log("getcontact data err" + e);
@@ -79,7 +79,7 @@ function Contextprovider(props) {
     if (res.status === 200) {
       toast.success(`your passord has been changed`, {
         position: "top-right",
-        autoClose: 2300,
+        autoClose: 1200,
         hideProgressBar: true,
         closeOnClick: false,
         pauseOnHover: true,
@@ -89,11 +89,10 @@ function Contextprovider(props) {
           textTransform: "capitalize"
         }
       })
-      refclosepass.current.click();
-      // console.log(msg);
-      refopass.current.value = "";
-      refnpass.current.value = "";
-      refrpass.current.value = "";
+      refclosepass.current.click()
+      refopass.current.value = ""
+      refnpass.current.value = ""
+      refrpass.current.value = ""
     }
     else {
       toast.warn(`${msg}`, {
@@ -125,7 +124,7 @@ function Contextprovider(props) {
         setpdata(jsondata)
       }
     } catch (e) {
-      console.log("getcontact data err" + e);
+      console.log("getproducts data err" + e);
     }
   }
 
@@ -337,7 +336,7 @@ function Contextprovider(props) {
     }
   }
   // get quantity
-  const getqty = async (id) => {
+  const getqty = async () => {
     try {
       const res = await fetch("http://localhost:5000/cart/getqty", {
         method: "GET",
@@ -376,7 +375,7 @@ function Contextprovider(props) {
         },
         body: JSON.stringify({ hno, area, pin, cod, city })
       })
-      await res.json()
+      const msg = await res.json()
       if (res.status === 201) {
         localStorage.setItem("count", 0)
 
@@ -385,9 +384,24 @@ function Contextprovider(props) {
           text: 'Your order will be delivered in next 30 minutes',
           icon: 'success',
           confirmButtonColor: "#2ec780",
-         
+
         })
+        reflocclose.current.click()
         navigate('/yourorder');
+      } else {
+        toast.warn(`${msg}`, {
+          position: "top-right",
+          autoClose: 850,
+          hideProgressBar: true,
+          closeOnClick: false,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          style: {
+            textTransform: "capitalize"
+          }
+
+        })
       }
     } catch (e) {
       console.log(`your order err ${e}`);

@@ -9,7 +9,7 @@ function Dellocation() {
     const refcon = useContext(refcontext)
     let { refloc, reflocclose, reflocsub } = refcon
     const [data, setdata] = useState({ hno: "", area: "", pin: "", cod: "", city: "" })
-    const [check, setcheck] = useState({edit:false,same:false})
+    const [check, setcheck] = useState({ edit: false, same: false })
 
     const condb = useContext(dbcon)
     let { yourorder, condata } = condb
@@ -17,7 +17,8 @@ function Dellocation() {
         e.preventDefault()
 
         let { hno, area, pin, cod, city } = data
-        if (condata.hno!==undefined&&(check.edit===false||check.same===false)) {
+
+        if (condata.hno !== undefined && (check.edit === false && check.same === false)) {
             toast.warning(`Please Select Same As Above Or Else Edit.`, {
                 position: "top-right",
                 autoClose: 2300,
@@ -30,12 +31,13 @@ function Dellocation() {
                     textTransform: "capitalize"
                 }
             })
+
         }
         else {
 
             yourorder(hno, area, pin, cod, city)
-            setdata({ hno: "", area: "", pin: "", cod: "", city: "" })
-            reflocclose.current.click()
+            // reflocclose.current.click()
+            // setdata({ hno: "", area: "", pin: "", cod: "", city: "" })
         }
 
 
@@ -47,8 +49,6 @@ function Dellocation() {
 
     }
     const clickHandler = () => {
-
-
         reflocsub.current.click()
     }
 
@@ -67,11 +67,11 @@ function Dellocation() {
         })
         setdata({ hno: condata.hno, area: condata.area, pin: condata.pin, city: condata.city, cod: condata.cod })
         condata.hno = undefined
-        setcheck({edit:true})
+        setcheck({ edit: true, same: false })
     }
     const sameadd = () => {
         setdata({ hno: condata.hno, area: condata.area, pin: condata.pin, city: condata.city, cod: condata.cod })
-        setcheck({same:true})
+        setcheck({ same: true, edit: false })
     }
 
 
@@ -88,12 +88,12 @@ function Dellocation() {
                             <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div className="modal-body">
-                            <form method='POST' onSubmit={subHandler} >
+                            <form method='post' onSubmit={subHandler} >
                                 <img src={logo} alt="MealMonkey" style={{ width: "125px", height: "125px", display: "block", margin: "auto" }} />
                                 <div className="mb-3">
 
                                     <label htmlFor="hno" className="form-label text-capitalize">Flat, House no., Building, Company, Apartment</label>
-                                    <input type="text" className="form-control" id="hno" name="hno" required onChange={changeHandler} minLength={3} value={data.hno || condata.hno || " "} readOnly={condata.hno !== undefined ? true : false} />
+                                    <input type="text" className="form-control" id="hno" name="hno" required={true} onChange={changeHandler} minLength={3} value={data.hno || condata.hno || " "} readOnly={condata.hno !== undefined ? true : false} />
 
                                 </div>
                                 <div className="mb-3">

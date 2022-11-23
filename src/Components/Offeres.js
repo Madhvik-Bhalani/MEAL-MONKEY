@@ -22,7 +22,7 @@ function Offeres() {
 
             <div id="carouselExampleInterval" className="carousel slide" data-bs-ride="carousel" ride="true" pause="hover">
                 <div className="carousel-inner">
-                    <div className="carousel-item active" data-bs-interval="2000">
+                    <div className="carousel-item active" data-bs-interval="3000">
                         <div className='container-fluid d-flex justify-content-center divHome text-light g-0'>
                             <div className="container row mx-3 d-flex justify-content-center">
                                 <img className='col-md-3 homeimg mx-3 my-5' src={img1} alt="" />
@@ -32,7 +32,7 @@ function Offeres() {
                             </div>
                         </div>
                     </div>
-                    <div className="carousel-item" data-bs-interval="2000">
+                    <div className="carousel-item" data-bs-interval="3000">
                         <div className='container-fluid d-flex justify-content-center divHome text-light g-0'>
                             <div className="container row mx-3 d-flex justify-content-center">
                                 <img className='col-md-3 homeimg mx-3 my-5' src={img5} alt="" />
@@ -42,7 +42,7 @@ function Offeres() {
                             </div>
                         </div>
                     </div>
-                    <div className="carousel-item" data-bs-interval="2000">
+                    <div className="carousel-item" data-bs-interval="3000">
                         <div className='container-fluid d-flex justify-content-center divHome text-light g-0'>
                             <div className="container row mx-3 d-flex justify-content-center">
                                 <img className='col-md-3 homeimg mx-3 my-5' src={img13} alt="" />
@@ -52,7 +52,7 @@ function Offeres() {
                             </div>
                         </div>
                     </div>
-                    <div className="carousel-item" data-bs-interval="2000">
+                    <div className="carousel-item" data-bs-interval="3000">
                         <div className='container-fluid d-flex justify-content-center divHome text-light g-0'>
                             <div className="container row mx-3 d-flex justify-content-center">
                                 <img className='col-md-3 homeimg mx-3 my-5' src={img9} alt="" />

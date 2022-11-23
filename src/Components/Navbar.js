@@ -9,10 +9,7 @@ import dbcon from '../Context/Dbcon';
 import { useLocation } from 'react-router-dom';
 
 
-
-
 function Navbar() {
-
 
     const reloadcon = useContext(reloadcontext)
     let { setreload } = reloadcon
@@ -28,9 +25,7 @@ function Navbar() {
     const signupHandler = (e) => {
         e.preventDefault();
         refup.current.click();
-
     }
-
     const condb = useContext(dbcon)
     let { putqty } = condb
     let navigate = useNavigate()
@@ -40,12 +35,12 @@ function Navbar() {
         localStorage.removeItem("token");
         navigate("/")
         setreload({})
-        localStorage.setItem("count", 0)
+        localStorage.setItem("count", 0) //reset to 0 for every new user old user get their respective data by (getqty-api)
 
     }
 
     const changepassHandler = () => {
-        console.log(refpass.current);
+        // console.log(refpass.current);
         refpass.current.click()
     }
 
@@ -64,7 +59,7 @@ function Navbar() {
                             <li className="nav-item text-center">
                                 <Link className="nav-link active" aria-current="page" to="/"><h1><span style={{ color: "#e99f27" }}>Meal</span> <span style={{ color: "#540640" }}>Monkey</span></h1></Link>
                             </li>
-
+                            ``
                         </ul>
 
                         {!localStorage.getItem("token") ?

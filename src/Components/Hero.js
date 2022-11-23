@@ -1,10 +1,17 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import './Hero.css'
 import hero from '../Assets/hero4.jpg'
+import refcontext from '../Context/Refcontext'
 
 function Hero() {
 
     document.title="Meal Monkey-Order Food Online"
+
+    const refcon=useContext(refcontext)
+    let {refup}=refcon
+    const clickHandler=()=>{
+        refup.current.click()
+    }
 
     return (
         <>
@@ -19,7 +26,7 @@ function Hero() {
                         <button className=" text-capitalize btn" style={{
                             backgroundColor: "#540640",
                             color: "white",width:"120px",fontSize:"19px"
-                        }}>temp</button>
+                        }} onClick={clickHandler}>Order Now</button>
                     </div>
                 </div>
                 <div className="right">

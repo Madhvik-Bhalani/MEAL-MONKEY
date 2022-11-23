@@ -38,8 +38,7 @@ function Contact() {
 
             console.log("ok" + cdata.ok);
             setdata({ name: "", email: "", mno: "", msg: "" })
-            navigate("/")
-
+            
             toast.success(`Your Message Has Been Sent`, {
                 position: "top-right",
                 autoClose: 2300,
@@ -52,7 +51,8 @@ function Contact() {
                     textTransform: "capitalize"
                 }
             })
-
+            navigate("/")
+            
         }
 
     }
@@ -99,7 +99,7 @@ function Contact() {
                                 <input type="number" style={{ color: "#540640", fontWeight: "500" }} className='form-control' name="mno" placeholder='Your Mobile Number' readOnly value={condata.mno || ""} />
                             </div>
                         </div>
-                        <textarea className="form-control" rows="5" style={{ marginTop: "30px" }} placeholder="Enter Your Message" name="msg" onChange={changeHandler}  ></textarea>
+                        <textarea className="form-control" rows="5" style={{ marginTop: "30px" }} placeholder="Enter Your Message" name="msg" onChange={changeHandler}  required></textarea>
 
                         <input type="submit" className='btn  fs-5 text-light mt-3' value="Send Now" style={{ width: "120px", color: "white", backgroundColor: "#540640" }} />
                     </form>

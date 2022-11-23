@@ -3,7 +3,7 @@ import refcontext from '../Context/Refcontext'
 import logo from '../Assets/logo.png'
 import dbcon from '../Context/Dbcon'
 
-import {  toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import './Signup.css'
 
@@ -63,7 +63,22 @@ function Signup() {
         subref.current.click(); //trigger submit button
     }
 
+    // const showpassHandler = () => {
+    //     var pass = document.getElementById("pass");
+    //     var cpass = document.getElementById("cpass");
+    //     var eyeclass = document.getElementById("eye").classList;
+    //     if (cpass.type === "password" && pass.type === "password") {
+    //         cpass.type = "text";
+    //         pass.type = "text";
+    //         eyeclass.replace("fa-eye-slash", "fa-eye")
+    //     } else {
+    //         cpass.type = "password";
+    //         pass.type = "password";
+    //         eyeclass.replace("fa-eye", "fa-eye-slash")
+    //     }
+    // }
 
+    
     return (
         <>
             <button type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop2" style={{ display: "none" }} ref={refcon.refup}>
@@ -97,11 +112,15 @@ function Signup() {
 
                                 <div className="mb-1">
                                     <label htmlFor="exampleInputPassword2" className="form-label text-capitalize">Password</label>
-                                    <input type="password" className="form-control" id="exampleInputPassword2" name="pass" required minLength={3} onChange={changeHandler} value={data.pass} />
+                                    <input type="password" className="form-control" id="pass" name="pass" required minLength={3} onChange={changeHandler} value={data.pass} />
                                 </div>
                                 <div className="mb-1">
                                     <label htmlFor="exampleInputPassword3" className="form-label text-capitalize">Confirm Password</label>
-                                    <input type="password" className="form-control" id="exampleInputPassword3" name="cpass" required onChange={changeHandler} value={data.cpass} />
+                                    <div>
+
+                                        <input type="password" className="form-control" id="cpass" name="cpass" required onChange={changeHandler} value={data.cpass} />
+                                        {/* <i onClick={showpassHandler} className={`fa-solid fa-eye-slash d-${data.cpass.length===0?'none':'inline'}`} style={{ fontSize: "15px", cursor: "pointer", position: "relative", left: "438px", bottom: "29px" }} id="eye"></i> */}
+                                    </div>
                                 </div>
                                 <input type="submit" value="Sign Up" style={{ display: "none" }} ref={subref} />
                             </form>
